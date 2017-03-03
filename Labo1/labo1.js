@@ -1,7 +1,6 @@
 /* Déclaration des variables */
 var mantisse;
 var exposant;
-var signe;
 var binaryNumber = [37]
 
 function castToBinary(nbrBits, deciNumber){
@@ -56,5 +55,5 @@ function determineExposantAndMantisse(){
 	mantisse = number/Math.pow(2,exposant);
 
 	returnBinaryFloatNumber();
-	//document.getElementById("Anser").innerHTML="Le nombre peut s'écrire comme étant 2^"+exposant+" * "+mantisse;
+	document.getElementById("Decimal").innerHTML="Le nombre peut s'écrire comme étant 2^"+exposant+" * "+mantisse;
 }
