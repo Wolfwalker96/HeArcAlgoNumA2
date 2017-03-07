@@ -1,7 +1,7 @@
 /* Déclaration des variables */
 var mantisse;
 var exposant;
-var binaryNumber = [37]
+var binaryNumber = [37];
 
 function castToBinary(nbrBits, deciNumber){
 	var binaryArray = [nbrBits];
@@ -32,6 +32,7 @@ function returnBinaryFloatNumber(){
 	for(i=1;i<28;i++){
 		binaryNumber[i+9] = binaryMantisse[i];
 	}
+	//Affichage
 	document.getElementById("Anser").innerHTML=binaryNumber;
 }
 
@@ -45,7 +46,7 @@ function determineExposantAndMantisse(){
 	}
 	else{
 		binaryNumber[0]=0;
-	}
+}
 
 	//Calcule l'exposant (sous forme décimale)
 	var logTwo = Math.log2(number);
@@ -55,5 +56,6 @@ function determineExposantAndMantisse(){
 	mantisse = number/Math.pow(2,exposant);
 
 	returnBinaryFloatNumber();
-	document.getElementById("Decimal").innerHTML="Le nombre peut s'écrire comme étant 2^"+exposant+" * "+mantisse;
+	//Affichage
+	document.getElementById("Decimal").innerHTML="Le nombre peut s'écrire comme étant 2^"+exposant+" * "+mantisse/1000000;
 }
