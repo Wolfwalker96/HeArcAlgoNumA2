@@ -46,7 +46,7 @@ function determineExposantAndMantisse(){
 	}
 	else{
 		binaryNumber[0]=0;
-}
+	}
 
 	//Calcule l'exposant (sous forme décimale)
 	var logTwo = Math.log2(number);
@@ -58,4 +58,8 @@ function determineExposantAndMantisse(){
 	returnBinaryFloatNumber();
 	//Affichage
 	document.getElementById("Decimal").innerHTML="Le nombre peut s'écrire comme étant 2^"+exposant+" * "+mantisse/1000000;
+}
+
+function floatAdd(){
+	
 }
