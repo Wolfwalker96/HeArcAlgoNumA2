@@ -1,8 +1,51 @@
+function TeamTwo(){
+	//VARIABLES
+	this.sgn = 0;
+	this.exp = [9];
+	this.mant = [27];
+
+	//MAIN FUNC
+	this.add = function(){
+		//teammTwo + teammTwo
+	}
+
+	//UTILITY
+	this.displayBasic = function(id){
+		document.getElementById(id).innerHTML=(this.sgn + " " + this.exp + " " + this.mant);
+	}
+
+	//SETTER//GETTER
+	this.setSgn = function(signe){
+		this.sgn = signe;
+	}
+	this.setExp = function(expo){
+		this.exp = expo;
+	}
+	this.setFrac = function(fraction){
+		for(let i=1;i<28;i++){
+			this.mant[i-1]=fraction[i];
+		}
+		//this.mant = fraction;
+	}
+
+	this.getSgn = function(){
+		return this.sgn;
+	}
+	this.getExp = function(){
+		return this.exp;
+	}
+	this.getFrac = function(){
+		return this.mant;
+	}
+}
+
+
 /* Déclaration des variables */
 //struc samere{
 var exposant;
 var binaryMantisse=[28];
 var binaryNumber = [37];
+var binaryExposant=[9];
 //}
 
 function castToBinary(nbrBits, deciNumber){
@@ -29,19 +72,19 @@ function returnBinryMantisse(mantisse){
 		if(1/denominator<=mantisse){
 			binaryMantisse[i]=1;
 			mantisse-=1/denominator;
-			alert(1/denominator + " " + i);
+			//alert(1/denominator + " " + i);
 		}
 		else{
 			binaryMantisse[i]=0;
 		}
 		i++;
 	}
-	document.getElementById("debug").innerHTML=binaryMantisse;
+	//document.getElementById("debug").innerHTML=binaryMantisse;
 }
 
 //Fonction qui cast le nombre sous sa forme binaire
 function returnBinaryFloatNumber(){
-	var binaryExposant = castToBinary(9,exposant);
+	binaryExposant = castToBinary(9,exposant);
 	binaryExposant.reverse();
 	let i;
 	for(i = 0; i<9;i++){
@@ -51,7 +94,7 @@ function returnBinaryFloatNumber(){
 		binaryNumber[i+9] = binaryMantisse[i];
 	}
 	//Affichage
-	document.getElementById("Anser").innerHTML=binaryNumber;
+	//document.getElementById("Anser").innerHTML=binaryNumber;
 }
 
 function determineExposantAndMantisse(){
@@ -75,8 +118,15 @@ function determineExposantAndMantisse(){
 
 	returnBinryMantisse(mantisse);
 	returnBinaryFloatNumber();
+
+	var dumb = new TeamTwo();
+	dumb.setSgn(binaryNumber[0]);
+	dumb.setFrac(binaryMantisse);
+	dumb.setExp(binaryExposant);
+	alert("samere");
+	dumb.displayBasic("debug");
 	//Affichage
-	document.getElementById("Decimal").innerHTML="Le nombre peut s'écrire comme étant 2^"+exposant+" * "+mantisse;
+	//document.getElementById("Decimal").innerHTML="Le nombre peut s'écrire comme étant 2^"+exposant+" * "+mantisse;
 }
 
 function floatAdd(){

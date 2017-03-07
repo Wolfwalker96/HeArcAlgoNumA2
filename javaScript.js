@@ -1,14 +1,14 @@
 /*
 				<sgn 1>	<exp 9>	<mant 27>	info
 	0 			0/1	 	0 		0
-	NaN			0		1		X		X>0	
+	NaN			0		1		X		X>0
 	INF+		0		1		0
 	INF-		1		1 		0
-	
+
 	-2			1 		(1)		0
 
 TO DO							STATE
-	timTwo(nom de notre type)	in process...
+	teamTwo(nom de notre type)	in process...
 		affectation				in process...
 			dec					in process...
 			bin					in process...
@@ -20,12 +20,14 @@ TO DO							STATE
 function pie(){
 
 }
-function timTwo(){	
+
+//class type
+function teamTwo(){
 	//VARIABLES
 	this.sgn = 0;
 	this.exp = 0;
 	this.frac = 0;
-	
+
 	//MAIN FUNC
 	this.expAndMant= function(){
 		//find expo and mantiss
@@ -36,7 +38,7 @@ function timTwo(){
 	this.Add = function(){
 		//timTwo + timTwo
 	}
-	
+
 	//UTILITY
 	this.returnBinaryFloatNumber = function (){
 	}
@@ -45,7 +47,7 @@ function timTwo(){
 	this.displayBasic = function(){
 		document.write(this.sgn + " " + this.exp + " " + this.frac);
 	}
-	
+
 	//SETTER//GETTER
 	this.setSgn = function(signe){
 		this.sgn = signe;
@@ -56,7 +58,7 @@ function timTwo(){
 	this.setFrac = function(fraction){
 		this.frac = fraction;
 	}
-	
+
 	this.getSgn = function(){
 		return this.sgn;
 	}
@@ -71,7 +73,7 @@ function timTwo(){
 
 
 //Test area
-var dumb = new ourFloat();
+var dumb = new teamTwo();
 dumb.displayBasic();
 //document.write("hello");
 
@@ -80,8 +82,8 @@ dumb.displayBasic();
 
 
 /*
-Cas à tester
-		-2 =					   -2 = 1 10000000 00000000000000000000000 = 
+Cas ï¿½ tester
+		-2 =					   -2 = 1 10000000 00000000000000000000000 =
 	     0 =                        0 = 0 00000000 00000000000000000000000
         -0 =                       -0 = 1 00000000 00000000000000000000000
      0.125 =                    0.125 = 0 01111100 00000000000000000000000
