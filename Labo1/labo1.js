@@ -1,7 +1,10 @@
 /* Déclaration des variables */
+//struc samere{
 var mantisse;
 var exposant;
+var binaryMantisse;
 var binaryNumber = [37];
+//}
 
 function castToBinary(nbrBits, deciNumber){
 	var binaryArray = [nbrBits];
@@ -18,14 +21,15 @@ function castToBinary(nbrBits, deciNumber){
 	return binaryArray;
 }
 
+function returnBinryMantisse(){
+	while()
+}
+
 //Fonction qui cast le nombre sous sa forme binaire
 function returnBinaryFloatNumber(){
-	mantisse*=1000000;
-	var binaryMantisse = castToBinary(28,mantisse);
 	var binaryExposant = castToBinary(9,exposant);
-	binaryMantisse.reverse();
 	binaryExposant.reverse();
-	var i;
+	let i;
 	for(i = 0; i<9;i++){
 		binaryNumber[i+1] = binaryExposant[i];
 	}
@@ -55,6 +59,7 @@ function determineExposantAndMantisse(){
 	//Calcule la mantisse (sous forme décimale)
 	mantisse = number/Math.pow(2,exposant);
 
+	returnBinryMantisse();
 	returnBinaryFloatNumber();
 	//Affichage
 	document.getElementById("Decimal").innerHTML="Le nombre peut s'écrire comme étant 2^"+exposant+" * "+mantisse/1000000;
