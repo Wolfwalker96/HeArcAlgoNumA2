@@ -25,7 +25,6 @@ function TeamTwo(){
 		for(let i=1;i<28;i++){
 			this.mant[i-1]=fraction[i];
 		}
-		//this.mant = fraction;
 	}
 
 	this.getSgn = function(){
@@ -41,12 +40,10 @@ function TeamTwo(){
 
 
 /* Déclaration des variables */
-//struc samere{
 var binaryMantisse=[28];
 var binaryNumber = [37];
 var binaryExposant=[9];
 var signe;
-//}
 
 function castToBinary(nbrBits, deciNumber){
 	let binaryArray = [nbrBits];
@@ -78,19 +75,15 @@ function returnBinryMantisse(mantisse){
 		}
 		i++;
 	}
-	//document.getElementById("debug").innerHTML=binaryMantisse;
 }
 
-//Fonction qui cast le nombre sous sa forme binaire
 function returnBinaryExp(exposant){
 	let realExp = 255+exposant;
 	binaryExposant = castToBinary(9,realExp);
 	binaryExposant.reverse();
 }
 
-function equal(){
-	let number=parseFloat(prompt("Nbre ?"));
-
+function equal(number){
 	//Détermine le bit du signe
 	if(number<0){
 		signe=1;
@@ -100,13 +93,12 @@ function equal(){
 		signe=0;
 	}
 
-	//Calcule l'exposant (sous forme décimale)
+	//Calcule l'exposant et la mantisse (sous forme décimale)
 	var logTwo = Math.log2(number);
 	let exposant = Math.floor(logTwo)+1;
-
-	//Calcule la mantisse (sous forme décimale)
 	let mantisse = number/Math.pow(2,exposant);
 
+	//convertit en tableau de pseudo-bits
 	returnBinryMantisse(mantisse);
 	returnBinaryExp(exposant);
 
@@ -114,15 +106,13 @@ function equal(){
 	dumb.setSgn(signe);
 	dumb.setFrac(binaryMantisse);
 	dumb.setExp(binaryExposant);
-	//dumb.displayBasic("debug");
 	//Affichage
-	document.getElementById("Decimal").innerHTML="Le nombre peut s'écrire comme étant 2^"+exposant+" * "+mantisse;
+	//document.getElementById("Decimal").innerHTML="Le nombre peut s'écrire comme étant 2^"+exposant+" * "+mantisse;
 	return dumb;
 }
 
 function convertDeciBin(){
-	var samere = equal();
-	alert("Je suis ici !");
+	let number = prompt("nbre ?");
+	var samere = equal(number);
 	samere.displayBasic("debug");
-
 }
