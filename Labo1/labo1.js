@@ -11,7 +11,7 @@ function TeamTwo(){
 
 	//UTILITY
 	this.displayBasic = function(id){
-		document.getElementById(id).innerHTML=(this.sgn + " " + this.exp + " " + this.mant);
+		document.getElementById(id).innerHTML=(this.sgn + " <br/> " + this.exp + "<br/>  " + this.mant);
 	}
 
 	//SETTER//GETTER
@@ -83,11 +83,12 @@ function returnBinryMantisse(mantisse){
 
 //Fonction qui cast le nombre sous sa forme binaire
 function returnBinaryExp(exposant){
-	binaryExposant = castToBinary(9,exposant);
+	let realExp = 255+exposant;
+	binaryExposant = castToBinary(9,realExp);
 	binaryExposant.reverse();
 }
 
-function determineExposantAndMantisse(){
+function equal(){
 	let number=parseFloat(prompt("Nbre ?"));
 
 	//Détermine le bit du signe
@@ -113,7 +114,15 @@ function determineExposantAndMantisse(){
 	dumb.setSgn(signe);
 	dumb.setFrac(binaryMantisse);
 	dumb.setExp(binaryExposant);
-	dumb.displayBasic("debug");
+	//dumb.displayBasic("debug");
 	//Affichage
 	document.getElementById("Decimal").innerHTML="Le nombre peut s'écrire comme étant 2^"+exposant+" * "+mantisse;
+	return dumb;
+}
+
+function convertDeciBin(){
+	var samere = equal();
+	alert("Je suis ici !");
+	samere.displayBasic("debug");
+
 }
