@@ -1,8 +1,7 @@
 /* Déclaration des variables */
 //struc samere{
-var mantisse;
 var exposant;
-var binaryMantisse;
+var binaryMantisse=[28];
 var binaryNumber = [37];
 //}
 
@@ -21,8 +20,23 @@ function castToBinary(nbrBits, deciNumber){
 	return binaryArray;
 }
 
-function returnBinryMantisse(){
-	while()
+function returnBinryMantisse(mantisse){
+	let i=0;
+	let stop = false;
+	let denominator;
+	while(mantisse>0 || i<28){
+		denominator = Math.pow(2,i+1);
+		if(1/denominator<=mantisse){
+			binaryMantisse[i]=1;
+			mantisse-=1/denominator;
+			alert(1/denominator + " " + i);
+		}
+		else{
+			binaryMantisse[i]=0;
+		}
+		i++;
+	}
+	document.getElementById("debug").innerHTML=binaryMantisse;
 }
 
 //Fonction qui cast le nombre sous sa forme binaire
@@ -50,17 +64,21 @@ function determineExposantAndMantisse(){
 	}
 	else{
 		binaryNumber[0]=0;
-}
+	}
 
 	//Calcule l'exposant (sous forme décimale)
 	var logTwo = Math.log2(number);
 	exposant = Math.floor(logTwo)+1;
 
 	//Calcule la mantisse (sous forme décimale)
-	mantisse = number/Math.pow(2,exposant);
+	let mantisse = number/Math.pow(2,exposant);
 
-	returnBinryMantisse();
+	returnBinryMantisse(mantisse);
 	returnBinaryFloatNumber();
 	//Affichage
-	document.getElementById("Decimal").innerHTML="Le nombre peut s'écrire comme étant 2^"+exposant+" * "+mantisse/1000000;
+	document.getElementById("Decimal").innerHTML="Le nombre peut s'écrire comme étant 2^"+exposant+" * "+mantisse;
+}
+
+function floatAdd(){
+
 }

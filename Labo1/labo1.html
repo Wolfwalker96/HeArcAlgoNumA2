@@ -18,16 +18,40 @@ Paul Jeanbourquin
     <h2>Marc Friedli, Paul Jeanbourquin et Florian Fasmeyer</h2>
   </div>
 
-
-
-  <div>
-  	<button type="button" id="myBtn" onClick="determineExposantAndMantisse()">Cliquez !</button>
-  </div>
+  <h3>Convertion Decimal -> binaire</h3>
+  <form>
+    <span>Entrez une nombre décimal : </span>
+    <input type=text id="decimalEntry"/></br>
+    <input type=submit value="Convertir" />
+  </form>
+  <button type="button" id="myBtn" onClick="determineExposantAndMantisse()">Cliquez !</button>
 
   <div id="Anser">
   </div>
 
+  <div id="debug">
+  </div>
+
   <div id="Decimal">
   </div>
+
+  <h3>Convertion binaire -> decimal</h3>
+  <form>
+    <span>Entrez une nombre signe : </span>
+    <input type=text id="signeEntry"/></br>
+    <span>Entrez une nombre exposant : </span>
+    <input type=text id="expoEntry"/></br>
+    <span>Entrez une nombre mantisse : </span>
+    <input type=text id="mantisseEntry"/></br>
+    <input type=submit value="Convertir" />
+  </form>
+  <h3>Addition</h3>
+  <form>
+    <span>Nombres : </span>
+    <input type=text id="add1Entry"/>
+    <span>+</span>
+    <input type=text id="add2Entry"/></br>
+    <input type=submit value="Calculer" />
+  </form>
 </body>
 </html>
