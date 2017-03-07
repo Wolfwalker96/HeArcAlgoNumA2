@@ -123,7 +123,6 @@ function determineExposantAndMantisse(){
 	dumb.setSgn(binaryNumber[0]);
 	dumb.setFrac(binaryMantisse);
 	dumb.setExp(binaryExposant);
-	alert("samere");
 	dumb.displayBasic("debug");
 	//Affichage
 	//document.getElementById("Decimal").innerHTML="Le nombre peut s'écrire comme étant 2^"+exposant+" * "+mantisse;
