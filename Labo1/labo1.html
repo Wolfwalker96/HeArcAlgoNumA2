@@ -20,24 +20,26 @@ Paul Jeanbourquin
 
   <h3>Convertion Decimal -> binaire</h3>
 
-    <span>Entrez une nombre décimal : </span>
+    <span>Entrez un nombre décimal : </span>
     <input type=number id="decimalEntry"  step="any"/></br>
     <input type=submit value="Convertir" onclick="convertDeciBin(decimalEntry)"/>
 
   <div id="convertDeciBinAnswer">
   </div>
 
+  <!-- temporaire, affiche la valeur de l'exposant et de la mantisse sous forme décimale-->
   <div id="debug">
   </div>
 
   <h3>Convertion binaire -> decimal</h3>
-    <span>Entrez une nombre signe : </span>
+    <span>Entrez un nombre signe : </span>
     <input type=number id="signeEntry"/></br>
-    <span>Entrez une nombre exposant : </span>
+    <span>Entrez un nombre exposant : </span>
     <input type=number id="expoEntry"/></br>
-    <span>Entrez une nombre mantisse : </span>
+    <span>Entrez un nombre mantisse* : </span>
     <input type=number id="mantisseEntry"/></br>
-    <input type=submit value="Convertir" />
+    <input type=button value="Convertir" onclick="convertBinDeci(signeEntry, expoEntry, mantisseEntry);" /><br/>
+    *Bit caché compris<br/><br/>
   <div id="convertBinDeciAnswer">
   </div>
 
@@ -50,7 +52,9 @@ Paul Jeanbourquin
   <div id="addAnswer">
   </div>
 
-
+  <!-- temporaire, affiche le TeamTwo sous sa forme décimale-->
+  <div id="debug2">
+  </div>
 
 </body>
 </html>

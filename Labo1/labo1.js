@@ -9,8 +9,21 @@ function TeamTwo(){
 		//teammTwo + teammTwo
 	}
 
-	this.returnNumber = function(){
-		//Retourne la valeur du float
+	//Retourne le TeamTwo sous forme décimale.
+	this.returnNumber = function(id){
+		let number, exposant, mantisse, temp, i;
+		temp = 0;
+		for(i=0;i<9;i++){
+			if(this.exp[i]==1){temp+=Math.pow(2,8-i);}
+		}
+		exposant=temp-255;
+		mantisse=0.5;
+		for(i=0;i<27;i++){
+			if(this.mant[i]==1){mantisse+=1/Math.pow(2,i+2);}
+		}
+		number = Math.pow(2,exposant)*mantisse;
+		if(this.sgn==1){number*=-1;}
+		document.getElementById(id).innerHTML="Exposant : "+exposant+" .Mantisse : "+mantisse+". Au final, le nombre est : "+number;
 	}
 
 	//UTILITY
@@ -111,12 +124,22 @@ function equal(number){
 	dumb.setFrac(binaryMantisse);
 	dumb.setExp(binaryExposant);
 	//Affiche pour debug
-	//document.getElementById("debug").innerHTML="Le nombre peut s'écrire comme étant 2^"+exposant+" * "+mantisse;
+	document.getElementById("debug").innerHTML="Le nombre peut s'écrire comme étant 2^"+exposant+" * "+mantisse;
 	return dumb;
 }
 
 function convertDeciBin(nombre){
-	//let number = prompt("nbre ?");
-	var samere = equal(nombre.value);
-	samere.displayBasic("convertDeciBinAnswer");
+	let myNumber = equal(nombre.value);
+	myNumber.displayBasic("convertDeciBinAnswer");
+	myNumber.returnNumber("debug2");
+}
+
+//Reçoit en argument le code binaire du signe, de l'exposant et de la mantisse et les placent dans un TeamTwo
+function convertBinDeci(signe, expo, mantisse){
+	let myNumber = new TeamTwo();
+	myNumber.setSgn(signe.value);
+	myNumber.setExp(expo.value);
+	myNumber.setFrac(mantisse.value);
+	myNumber.displayBasic("convertBinDeciAnswer");
+	myNumber.returnNumber("debug2");
 }
