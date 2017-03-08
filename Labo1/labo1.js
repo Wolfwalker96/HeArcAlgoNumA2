@@ -9,6 +9,10 @@ function TeamTwo(){
 		//teammTwo + teammTwo
 	}
 
+	this.returnNumber = function(){
+		//Retourne la valeur du float
+	}
+
 	//UTILITY
 	this.displayBasic = function(id){
 		document.getElementById(id).innerHTML=(this.sgn + " <br/> " + this.exp + "<br/>  " + this.mant);
@@ -106,13 +110,13 @@ function equal(number){
 	dumb.setSgn(signe);
 	dumb.setFrac(binaryMantisse);
 	dumb.setExp(binaryExposant);
-	//Affichage
-	//document.getElementById("Decimal").innerHTML="Le nombre peut s'écrire comme étant 2^"+exposant+" * "+mantisse;
+	//Affiche pour debug
+	//document.getElementById("debug").innerHTML="Le nombre peut s'écrire comme étant 2^"+exposant+" * "+mantisse;
 	return dumb;
 }
 
-function convertDeciBin(){
-	let number = prompt("nbre ?");
-	var samere = equal(number);
-	samere.displayBasic("debug");
+function convertDeciBin(nombre){
+	//let number = prompt("nbre ?");
+	var samere = equal(nombre.value);
+	samere.displayBasic("convertDeciBinAnswer");
 }

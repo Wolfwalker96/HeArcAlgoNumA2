@@ -19,40 +19,34 @@ Paul Jeanbourquin
   </div>
 
   <h3>Convertion Decimal -> binaire</h3>
-  <form>
+
     <span>Entrez une nombre décimal : </span>
-    <input type=text id="decimalEntry" name="decimalEntry"/></br>
-    <input type=submit value="Convertir" onclick="convertDeciBin()"/>
-  </form>
+    <input type=number id="decimalEntry"  step="any"/></br>
+    <input type=submit value="Convertir" onclick="convertDeciBin(decimalEntry)"/>
+
   <div id="convertDeciBinAnswer">
   </div>
-
-  <button type="button" id="myBtn" onClick="convertDeciBin()">Cliquez !</button>
 
   <div id="debug">
   </div>
 
   <h3>Convertion binaire -> decimal</h3>
-  <form>
     <span>Entrez une nombre signe : </span>
-    <input type=text id="signeEntry"/></br>
+    <input type=number id="signeEntry"/></br>
     <span>Entrez une nombre exposant : </span>
-    <input type=text id="expoEntry"/></br>
+    <input type=number id="expoEntry"/></br>
     <span>Entrez une nombre mantisse : </span>
-    <input type=text id="mantisseEntry"/></br>
+    <input type=number id="mantisseEntry"/></br>
     <input type=submit value="Convertir" />
-  </form>
   <div id="convertBinDeciAnswer">
   </div>
 
   <h3>Addition</h3>
-  <form>
     <span>Nombres : </span>
-    <input type=text id="add1Entry"/>
+    <input type=number id="add1Entry" step="any"/>
     <span>+</span>
-    <input type=text id="add2Entry"/></br>
+    <input type=number id="add2Entry" step="any"/></br>
     <input type=submit value="Calculer" />
-  </form>
   <div id="addAnswer">
   </div>
 
