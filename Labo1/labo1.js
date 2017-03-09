@@ -1,7 +1,5 @@
 function TeamTwo(){
 	//VARIABLES
-
-	// bit de Signe
 	this.sgn = 0;
 	this.exp = new Array(9);
 	this.mant = new Array(27);
@@ -10,50 +8,50 @@ function TeamTwo(){
 	this.add = function(){
 		//teammTwo + teammTwo
 	}
-
-	//Retourne le TeamTwo sous forme décimale.
-	this.returnNumber = function(id){
-		let number, exposant, mantisse, temp, i;
-		temp = 0;
-		for(i=0;i<9;i++){
-			if(this.exp[i]==1){temp+=Math.pow(2,8-i);}
-		}
-		exposant=temp-255;
-		mantisse=0.5;
-		for(i=0;i<27;i++){
-			if(this.mant[i]==1){mantisse+=1/Math.pow(2,i+2);}
-		}
-		number = Math.pow(2,exposant)*mantisse;
-		if(this.sgn==1){number*=-1;}
-		document.getElementById(id).innerHTML="Exposant : "+exposant+" .Mantisse : "+mantisse+". Au final, le nombre est : "+number;
-	}
 	//CHECK EXCEPTIONS NUMERIQUES
 	this.isZero = function(){
 		return( filledArray(this.exp, 0) === 1 &&
 				filledArray(this.mant, 0)=== 1);
 	}
+
 	this.isNaN = function(){
 		return( filledArray(this.exp, 1) === 1 &&
 				filledArray(this.mant, 0)!== 1);
 	}
+
 	this.isInf = function(){
 		return( filledArray(this.exp, 1) === 1 &&
 				filledArray(this.mant, 0)=== 1);
 	}
-	this.getNumeric = function(){
+
+	//Retourne le TeamTwo sous forme décimale.
+	this.returnNumber = function(id){
+		let number;
 		if(this.isZero())
-			return 0;	//pas de -0, pose problèmes
+			number = 0;	//pas de -0, pose problèmes
 		else if(this.isNaN())
-			return "NaN";
+			number = "NaN";
 		else if(this.isInf()){
 			if(this.sgn === 1)
-				return '-INF';
+				number = '-INF';
 			else
-				return 'INF';
+				number = 'INF';
 		}
 		else{
-			//return (Une fonction qui retourne en numérique);
+			let exposant, mantisse, temp, i;
+			temp = 0;
+			for(i=0;i<9;i++){
+				if(this.exp[i]==1){temp+=Math.pow(2,8-i);}
+			}
+			exposant=temp-255;
+			mantisse=0.5;
+			for(i=0;i<27;i++){
+				if(this.mant[i]==1){mantisse+=1/Math.pow(2,i+2);}
+			}
+			number = Math.pow(2,exposant)*mantisse;
+			if(this.sgn==1){number*=-1;}
 		}
+		document.getElementById(id).innerHTML="Le nombre vaut : "+number;
 	}
 	//UTILITY
 	this.displayBasic = function(id){
@@ -84,7 +82,6 @@ function TeamTwo(){
 	}
 }
 
-
 /* Déclaration des variables */
 var binaryMantisse=[28];
 var binaryNumber = [37];
@@ -106,6 +103,17 @@ function castToBinary(nbrBits, deciNumber){
 	}
 	return binaryArray;
 }
+
+function UbinToDec(array, nbBits){
+		alert("je suis ici ! "+array);
+		let number=0;
+		let i;
+		for(i=0;i<nbBits;i++){
+			if(array[i]==1)
+				number+=Math.pow(2,nbBits-1-i);
+		}
+		return number;
+	}
 
 function returnBinryMantisse(mantisse){
 	let i=0;
@@ -163,14 +171,14 @@ function equal(number){
 	dumb.setFrac(binaryMantisse);
 	dumb.setExp(binaryExposant);
 	//Affiche pour debug
-	document.getElementById("debug").innerHTML="Le nombre peut s'écrire comme étant 2^"+exposant+" * "+mantisse;
+	//document.getElementById("debug").innerHTML="Le nombre peut s'écrire comme étant 2^"+exposant+" * "+mantisse;
 	return dumb;
 }
 
 function convertDeciBin(nombre){
 	let myNumber = equal(nombre.value);
-	myNumber.displayBasic("convertDeciBinAnswer");
-	myNumber.returnNumber("debug2");
+	myNumber.displayBasic("convertDeciBinAnswerBin");
+	myNumber.returnNumber("convertDeciBinAnswerDeci");
 }
 
 //Reçoit en argument le code binaire du signe, de l'exposant et de la mantisse et les placent dans un TeamTwo
@@ -179,8 +187,58 @@ function convertBinDeci(signe, expo, mantisse){
 	myNumber.setSgn(signe.value);
 	myNumber.setExp(expo.value);
 	myNumber.setFrac(mantisse.value);
-	myNumber.displayBasic("convertBinDeciAnswer");
-	myNumber.returnNumber("debug2");
+	myNumber.displayBasic("convertBinDeciAnswerBin");
+	myNumber.returnNumber("convertBinDeciAnswerDeci");
+}
+
+function add(number1, number2){
+	//this = number1
+	let firstNumber = equal(number1.value);
+	let secondNumber = equal(number2.value);
+	let thirdNumber = new TeamTwo();
+	//alert("Samere !"+firstNumber.getSgn()+" "+secondNumber.getSgn());
+	let firstExp = UbinToDec(firstNumber.getExp(),9);
+	let secondExp = UbinToDec(secondNumber.getExp(),9);
+	let bigMant, smallMant;
+
+	let expDiff = firstExp - secondExp;
+	alert("1 : "+firstExp+" .2 : "+secondExp +" = "+expDiff);
+	if(expDiff >= 0){
+		thirdNumber.setSgn(firstNumber.getSgn());
+		thirdNumber.setExp(firstNumber.getExp());
+		bigMant = firstNumber.getFrac();
+		smallMant = secondNumber.getFrac();
+	}
+	else{
+		thirdNumber.setSgn(secondNumber.getSgn());
+		thirdNumber.setExp(secondNumber.getExp());
+		bigMant = secondNumber.getFrac();
+		smallMant = firstNumber.getFrac();
+	};
+	bigMant.unshift(1);
+	//bigMant[0]=1;
+	smallMant.unshift(1);
+	//smallMant[0]=1;
+	for(let i=0; i<expDiff; i++){
+		smallMant.unshift(0);
+		smallMant.pop();
+	}
+	let xOR;
+	let retenue=0;
+	let newMant = [];
+	for(let i=27; i>=0; i--){
+		xOR 	= 	bigMant[i] ^ smallMant[i];
+		newMant[i] = xOR^retenue;
+		retenue = 	bigMant[i] & smallMant[i];
+	}
+	if(retenue == 1){
+		newMant.unshift(1);
+		newMant.pop();
+	}
+	thirdNumber.setFrac(newMant);
+	alert("Samere !");
+	thirdNumber.displayBasic("addAnswerBin");
+	thirdNumber.returnNumber("addAnswerDeci");
 }
 
 //UTILISE POUR "CHECK EXCEPTIONS NUMERIC
@@ -192,6 +250,7 @@ function filledArray(array, value){
 	}
 	return 1;
 }
+
 function fill(array, value){
 	for (let i=0; i<array.length; i++) {
 		array[i] = value;

@@ -24,7 +24,9 @@ Paul Jeanbourquin
     <input type=number id="decimalEntry"  step="any"/></br>
     <input type=submit value="Convertir" onclick="convertDeciBin(decimalEntry)"/>
 
-  <div id="convertDeciBinAnswer">
+  <div id="convertDeciBinAnswerBin">
+  </div>
+  <div id="convertDeciBinAnswerDeci">
   </div>
 
   <!-- temporaire, affiche la valeur de l'exposant et de la mantisse sous forme décimale-->
@@ -40,7 +42,9 @@ Paul Jeanbourquin
     <input type=number id="mantisseEntry"/></br>
     <input type=button value="Convertir" onclick="convertBinDeci(signeEntry, expoEntry, mantisseEntry);" /><br/>
     *Bit caché compris<br/><br/>
-  <div id="convertBinDeciAnswer">
+  <div id="convertBinDeciAnswerBin">
+  </div>
+  <div id="convertBinDeciAnswerDeci">
   </div>
 
   <h3>Addition</h3>
@@ -48,12 +52,10 @@ Paul Jeanbourquin
     <input type=number id="add1Entry" step="any"/>
     <span>+</span>
     <input type=number id="add2Entry" step="any"/></br>
-    <input type=submit value="Calculer" />
-  <div id="addAnswer">
+    <input type=submit value="Calculer" onclick="add(add1Entry, add2Entry)"/>
+  <div id="addAnswerBin">
   </div>
-
-  <!-- temporaire, affiche le TeamTwo sous sa forme décimale-->
-  <div id="debug2">
+  <div id="addAnswerDeci">
   </div>
 
 </body>
