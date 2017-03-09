@@ -19,6 +19,19 @@ function binInc(array){		//increment 'array' by 1
 		}
 	}
 }
-function binNegative(){		//output the opposit: 1 -> (-1)
-	
+function binNegative(array){		//output the opposit: 1 -> (-1)
+	binNot(array);
+	array[0] *= -1;
+	binInc(array);	
 }
+function binNot(array){			//logic NOT gate
+	for(let i=0; i<array.length; i++){
+		if(array[i]===1){
+			array[i]=0;
+		}
+		else{
+			array[i]=1;
+		}
+	}
+}
+
