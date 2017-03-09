@@ -4,11 +4,11 @@
 	require_once("typeTeamTwo.js");
 ?>
 var dump = new TeamTwo();
-this.sgn = 0;
+dump.sgn = 0;
 fill(dump.exp, 1);
-fill(dump.mant, 1);
+fill(dump.mant, 0);
 
-var dada = dump.isNaN();
+var dada = dump.getNumeric();
 document.write(dada + "</br>");
 
 document.write("End file");

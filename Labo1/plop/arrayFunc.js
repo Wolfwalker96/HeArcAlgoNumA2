@@ -6,7 +6,6 @@ function filledArray(array, value){
 	}
 	return 1;
 }
-
 function fill(array, value){
 	for (let i=0; i<array.length; i++) {
 		array[i] = value;
