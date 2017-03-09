@@ -1,7 +1,13 @@
 function TeamTwo(){
 	//VARIABLES
+
+	// bit de Signe
 	this.sgn = 0;
+
+	// bits pour l'exposant
 	this.exp = [9];
+
+	// bits pour la mantisse
 	this.mant = [27];
 
 	//MAIN FUNC
@@ -62,6 +68,7 @@ var binaryNumber = [37];
 var binaryExposant=[9];
 var signe;
 
+// Cast un décimal en nombre binaire
 function castToBinary(nbrBits, deciNumber){
 	let binaryArray = [nbrBits];
 	for(var i= nbrBits-1; i>=0;i--){
@@ -81,6 +88,15 @@ function returnBinryMantisse(mantisse){
 	let i=0;
 	let stop = false;
 	let denominator;
+	/*
+	 *	tant que mantisse > 0 et qu'il reste debit faire :
+	 *		dénominateur = (i+1)^2
+	 *		si 1/dénominateur <= mantisse alors :
+	 *			mettre le bit i à 1
+	 *			mantisse = mantisse - 1/denominateur
+	 *		sinon :
+	 *			mettre le bit i à 0
+	 */
 	while(mantisse>0 || i<28){
 		denominator = Math.pow(2,i+1);
 		if(1/denominator<=mantisse){
@@ -104,22 +120,22 @@ function equal(number){
 	//Détermine le bit du signe
 	if(number<0){
 		signe=1;
-		number*=-1;
+		number*=-1; // une fois le signe traité on utilise sa valeur absolue
 	}
 	else{
 		signe=0;
 	}
 
 	//Calcule l'exposant et la mantisse (sous forme décimale)
-	var logTwo = Math.log2(number);
-	let exposant = Math.floor(logTwo)+1;
-	let mantisse = number/Math.pow(2,exposant);
+	var logTwo = Math.log2(number); // Permet d'obtenir log2(number)
+	let exposant = Math.floor(logTwo)+1; // exposant = arrondiSup(log2(number))
+	let mantisse = number/Math.pow(2,exposant);  // mantisse = number/exposant^2
 
 	//convertit en tableau de pseudo-bits
-	returnBinryMantisse(mantisse);
-	returnBinaryExp(exposant);
+	returnBinryMantisse(mantisse); 	// transforme sous forme binaire
+	returnBinaryExp(exposant); 			// transforme sous forme binaire
 
-	var dumb = new TeamTwo();
+	var dumb = new TeamTwo(); // Crée un float sur 37bits
 	dumb.setSgn(signe);
 	dumb.setFrac(binaryMantisse);
 	dumb.setExp(binaryExposant);
