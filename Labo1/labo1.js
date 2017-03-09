@@ -3,12 +3,8 @@ function TeamTwo(){
 
 	// bit de Signe
 	this.sgn = 0;
-
-	// bits pour l'exposant
-	this.exp = [9];
-
-	// bits pour la mantisse
-	this.mant = [27];
+	this.exp = new Array(9);
+	this.mant = new Array(27);
 
 	//MAIN FUNC
 	this.add = function(){
@@ -31,7 +27,34 @@ function TeamTwo(){
 		if(this.sgn==1){number*=-1;}
 		document.getElementById(id).innerHTML="Exposant : "+exposant+" .Mantisse : "+mantisse+". Au final, le nombre est : "+number;
 	}
-
+	//CHECK EXCEPTIONS NUMERIQUES
+	this.isZero = function(){
+		return( filledArray(this.exp, 0) === 1 &&
+				filledArray(this.mant, 0)=== 1);
+	}
+	this.isNaN = function(){
+		return( filledArray(this.exp, 1) === 1 &&
+				filledArray(this.mant, 0)!== 1);
+	}
+	this.isInf = function(){
+		return( filledArray(this.exp, 1) === 1 &&
+				filledArray(this.mant, 0)=== 1);
+	}
+	this.getNumeric = function(){
+		if(this.isZero())
+			return 0;	//pas de -0, pose problèmes
+		else if(this.isNaN())
+			return "NaN";
+		else if(this.isInf()){
+			if(this.sgn === 1)
+				return '-INF';
+			else
+				return 'INF';
+		}
+		else{
+			//return (Une fonction qui retourne en numérique);
+		}
+	}
 	//UTILITY
 	this.displayBasic = function(id){
 		document.getElementById(id).innerHTML=(this.sgn + " <br/> " + this.exp + "<br/>  " + this.mant);
@@ -158,4 +181,20 @@ function convertBinDeci(signe, expo, mantisse){
 	myNumber.setFrac(mantisse.value);
 	myNumber.displayBasic("convertBinDeciAnswer");
 	myNumber.returnNumber("debug2");
+}
+
+//UTILISE POUR "CHECK EXCEPTIONS NUMERIC
+function filledArray(array, value){
+	for(let i=0; i<array.length; i++){
+		if(array[i] !== value){
+			return 0;
+		}
+	}
+	return 1;
+}
+function fill(array, value){
+	for (let i=0; i<array.length; i++) {
+		array[i] = value;
+	}
+	return array;	//not required
 }
