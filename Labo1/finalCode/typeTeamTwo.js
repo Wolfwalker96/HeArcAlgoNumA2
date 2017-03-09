@@ -1,3 +1,18 @@
+/*
+	type 'TeamTwo', pseudo float using tables
+	Numeric Algorithm course, team2 
+	HES-SO HE-ARC - 09.03.2017
+	
+	Marc Friedli
+	Paul Ami Jean-Bourquin
+	Florian Fasmeyer
+	
+	note: We decided not to use the typedArray objects
+	as with more than 32bits there is only 'Float64Array'
+	a floating point. We would have to use concatenated
+	'Uint32Array' + 'Uint8Array' or 5X 'Uint8Array' in
+	order to make a proper (real) floating variable.
+*/ 
 function TeamTwo(){
 	this.sgn = 0;
 	this.exp = new Array(9);
@@ -5,12 +20,12 @@ function TeamTwo(){
 	let num = 0;
 	
 	this.add = function (num) {	//t1.add(t2) -> t1 += t2
-		return num;
+		return num;//in process...
 	}
 	this.sub = function(num){	//t1.sub(t2) -> t1 -= t2
-		return num;
+		return num;//in process...
 	}
-	this.numeric = function(){
+	this.numeric = function(){	//used in 'getNumeric()'
 		let number, exposant, mantisse, temp, i;
 		temp = 0;
 		for(i=0;i<9;i++){
