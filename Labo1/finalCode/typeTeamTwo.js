@@ -17,7 +17,6 @@ function TeamTwo(){
 	this.sgn = 0;
 	this.exp = new Array(9);
 	this.mant = new Array(27);
-	let num = 0;
 	
 	this.add = function (num) {	//t1.add(t2) -> t1 += t2
 		return num;//in process...
@@ -67,5 +66,57 @@ function TeamTwo(){
 		else{
 			return this.numeric();
 		}
+	}
+	this.construct = function(num){
+		this.sgn = 0;
+		if(1/num < 0){
+			this.sgn = 1;
+			num *= -1;
+		}			
+		
+		//Exposant et mantisse décimal
+		var logTwo = Math.log2(num); 				// Permet d'obtenir log2(number)
+		let exposant = Math.floor(logTwo)+1; 		// exposant = arrondiSup(log2(number))
+		let mantisse = num/Math.pow(2,exposant);	// mantisse = number/exposant^2
+		
+		this.constructExp(exposant);
+		this.constructMant(mantisse);
+		document.write("</br>"+this.sgn+"</br>exp: " + this.exp + "</br>mant: "+this.mant);
+		//convertit en tableau de pseudo-bits
+		//returnBinryMantisse(mantisse); 	// transforme sous forme binaire
+		//returnBinaryExp(exposant); 		// transforme sous forme binaire
+
+	}
+	this.constructExp = function (exposant){
+		let realExp = 255+exposant;	
+		this.exp = numToBin(realExp, 9);
+		this.exp.reverse();
+	}
+	this.constructMant = function(mantisse){
+		/*
+		 *	tant que mantisse > 0 et qu'il reste debit faire :
+		 *		dénominateur = (i+1)^2
+		 *		si 1/dénominateur <= mantisse alors :
+		 *			mettre le bit i à 1
+		 *			mantisse = mantisse - 1/denominateur
+		 *		sinon :
+		 *			mettre le bit i à 0
+		 */
+		let i=0;
+		let stop = false;
+		let denominator, array=new Array(28);
+		while(mantisse>0 || i<28){
+			denominator = Math.pow(2,i+1);
+			if(1/denominator<=mantisse){
+				array[i]=1;
+				mantisse-=1/denominator;
+			}
+			else{
+				array[i]=0;
+			}
+			i++;
+		}
+		array.shift();
+		this.mant = array;
 	}
 }

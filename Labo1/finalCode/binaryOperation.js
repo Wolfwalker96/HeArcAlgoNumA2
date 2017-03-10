@@ -9,6 +9,20 @@
 	Paul Ami Jean-Bourquin
 	Florian Fasmeyer
 */ 
+function numToBin(num, nbBit){
+	let array = [nbBit];
+	for(var i= nbBit-1; i>=0;i--){
+		let pow= Math.pow(2,i);
+		if(num>=pow){
+			num-=pow;
+			array[i]=1;
+		}
+		else{
+			array[i]=0;
+		}
+	}
+	return array;
+}
 function binInc(array){		//increment 'array' by 1
 	for(let i=array.length-1; i>=0; i--){
 		if(array[i]===1)
@@ -21,7 +35,6 @@ function binInc(array){		//increment 'array' by 1
 }
 function binNegative(array){		//output the opposit: 1 -> (-1)
 	binNot(array);
-	array[0] *= -1;
 	binInc(array);	
 }
 function binNot(array){			//logic NOT gate
