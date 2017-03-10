@@ -1,0 +1,68 @@
+<!--
+Developped by team A2 :
+Florian Fasmeyer,
+Marc Friedli,
+Paul Jeanbourquin
+-->
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title> Team 2 - Labo 1</title>
+  <script src="js/typeTeamTwo.js"></script>
+  <script src="js/arrayFunc.js"></script>
+  <script src="js/binaryOperation.js"></script>
+  <script src="js/main.js"></script>
+  <script> var num = new TeamTwo(); </script>
+</head>
+
+<body>
+  <div id="title">
+  	<h1>Algo Num Team 2 Labo 1</h1>
+    <h2>Marc Friedli, Paul Jeanbourquin et Florian Fasmeyer</h2>
+  </div>
+
+  <h3>Convertion Decimal -> binaire</h3>
+
+    <span>Entrez un nombre décimal : </span>
+    <input type=number id="decimalEntry"  step="any"/></br>
+    <input type=submit value="Convertir" onclick="displayDecToBin(decimalEntry);"/></br></br>
+  <div id="convertDeciBinAnswerBin">
+  </div>
+  <div id="convertDeciBinAnswerDeci">
+  </div>
+
+  <!-- temporaire, affiche la valeur de l'exposant et de la mantisse sous forme décimale-->
+  <div id="debug">
+  </div>
+
+  <h3>Convertion binaire -> decimal</h3>
+    <span>Entrez un nombre signe : </span>
+    <input type=number id="signeEntry"/></br>
+    <span>Entrez un nombre exposant : </span>
+    <input type=number id="expoEntry"/></br>
+    <span>Entrez un nombre mantisse* : </span>
+    <input type=number id="mantisseEntry"/></br>
+    <input type=button value="Convertir" onclick="displayBinToDec(signeEntry, expoEntry, mantisseEntry)" /><br/>
+    *Bit caché compris<br/><br/>
+  <div id="convertBinDeciAnswerBin">
+  </div>
+  <div id="convertBinDeciAnswerDeci">
+  </div>
+
+  <h3>Addition</h3>
+    <span>Nombres : </span>
+    <input type=number id="add1Entry" step="any"/>
+    <span>+</span>
+    <input type=number id="add2Entry" step="any"/></br>
+    <input type=submit value="Calculer" onclick="add(add1Entry, add2Entry)"/>
+  <div id="addAnswerBin">
+  </div>
+  <div id="addAnswerDeci">
+  </div>
+  <p>note: les mantisses sont données avec leur 'hidden bit', 
+  0 sera affiché avec le bit caché, bien qu'il ne soit pas dans
+  la mantisse physiquement parlant.</p>
+
+</body>
+</html>
