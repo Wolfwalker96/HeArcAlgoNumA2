@@ -4,7 +4,7 @@
 	HES-SO HE-ARC - 09.03.2017
 	
 	Marc Friedli
-	Paul Ami Jean-Bourquin
+	Paul Jeanbourquin
 	Florian Fasmeyer
 	
 	note: We decided not to use the typedArray objects
@@ -133,7 +133,7 @@ function TeamTwo(){
 		}
 		else
 			this.sgn = 0;
-		//Exposant et mantisse décimal
+		//Exposant et mantisse dï¿½cimal
 		var logTwo = Math.log2(num); 				// Permet d'obtenir log2(number)
 		let exposant = Math.floor(logTwo)+1; 		// exposant = arrondiSup(log2(number))
 		let mantisse = num/Math.pow(2,exposant);	// mantisse = number/exposant^2

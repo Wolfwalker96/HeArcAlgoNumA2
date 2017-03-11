@@ -5,7 +5,7 @@
 	HES-SO HE-ARC - 10.03.2017
 	
 	Marc Friedli
-	Paul Ami Jean-Bourquin
+	Paul Jeanbourquin
 	Florian Fasmeyer
 */ 
 function displayDecToBin(num){	//display the result
