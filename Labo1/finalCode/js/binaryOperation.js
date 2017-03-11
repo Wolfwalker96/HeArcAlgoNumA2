@@ -1,5 +1,4 @@
 /*
-<script src="binaryOperation.js" ></script>
 	Pseudo binary operations with arrays
 	"using two's complement"
 	Numeric Algorithm course, team2 
@@ -23,6 +22,26 @@ function numToBin(num, nbBit){
 	}
 	return array;
 }
+function binLSR(array){	//Logic Slide Right
+	array.unshift(0);
+	array.pop();
+}
+function binLSL(array){	//Logic Slide Right
+	array.push(0);
+	array.shift();
+}
+function binAdd(arrayA,arrayB){ //only if array are same length! Because lazy!
+	let xOR = 0;				//EXCEPTION: does return an array!
+	let carry = 0;
+	let mArryMe = Array(Array.length);
+	if(arrayA.length === arrayB.length){
+		for(i=arrayA.length-1; i>=0; i--){
+			xOR = arrayA[i] ^ arrayB[i];
+			mArryMe[i] = xOR ^ carry;
+			carry = arrayA[i] & arrayB[i];
+		}
+	}
+}
 function binInc(array){		//increment 'array' by 1
 	for(let i=array.length-1; i>=0; i--){
 		if(array[i]===1)
@@ -33,7 +52,7 @@ function binInc(array){		//increment 'array' by 1
 		}
 	}
 }
-function binNegative(array){		//output the opposit: 1 -> (-1)
+function binNegative(array){ //output the opposit: 1 -> (-1)
 	binNot(array);
 	binInc(array);	
 }

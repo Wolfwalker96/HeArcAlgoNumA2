@@ -10,7 +10,7 @@
 */ 
 function displayDecToBin(num){	//display the result
 	let value = new TeamTwo;
-	value.equ(num.value);
+	value.equ(Number(num.value));
 	value.displayBasic("convertDeciBinAnswerBin");
 	value.displayNumeric("convertDeciBinAnswerDeci");
 }
@@ -23,10 +23,10 @@ function displayBinToDec(signeEntry, expoEntry, mantisseEntry){
 function displayAdd(one, two){
 	let value = new TeamTwo;
 	let otherValue = new TeamTwo;
-	value.equ(one.value);
-	otherValue.equ(two.value);
+	value.equ(Number(one.value));
+	otherValue.equ(Number(two.value));
 	
-	value.add(teamTwo);
+	value.add(otherValue);
 	
 	value.displayBasic("addAnswerBin");
 	value.displayNumeric("addAnswerDeci");

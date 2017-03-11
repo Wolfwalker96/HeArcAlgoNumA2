@@ -18,12 +18,12 @@ function TeamTwo(){
 	this.exp = new Array(9);
 	this.mant = new Array(27);
 	
-	//equ(numeric), add(teamTwo), sub(TeamTwo), getNumeric()
+	//equ(numeric), add(teamTwo), sub(TeamTwo), getNumeric(), init(sgn, exp, mant)
 	this.equ = function (num){ //t1 = new TeamTwo() 
 								//t1.equ(-2E+10)
 		if(isNaN(num)){
 			fill(this.exp, 1);
-			this.mant[0] = 1;
+			fill(this.mant, 1);
 		}
 		else if(num === Infinity){
 			this.sgn = 0;
@@ -38,8 +38,42 @@ function TeamTwo(){
 		else
 			this.construct(num);
 	}
-	this.add = function (num) {	//t1.add(t2) -> t1 += t2
-		return num;//in process...
+	this.add = function (num){	//t1.add(t2) -> t1 += t2
+		//this.equ(this.getNumeric()+num.getNumeric());
+		if(this.isNaN() || num.isNaN()){ //NaN CHECK!
+			fill(this.exp, 1);	//this become a NaN
+			this.mant[0] = 1;
+			return NaN;
+		}
+		
+		if(this.isZero())	//Zero CHECK!
+			if(num.isZero())	
+				return (this.sgn === num.sgn)? this.getNumeric() : 0;	// (-0)+(-0)=(-0)
+			else{ 				// 0 + n = n ; this <= num
+				this.init(num.getSgn(), num.getExp(), num.getMant());
+				return num.getNumeric();
+			}
+		else if(num.isZero())	//n + 0 = n ; nothing...
+			return this.getNumeric();
+			
+		if(this.isInf())	//Infinity CHECK!
+			if(num.isInf())
+				if(this.sgn === num.sgn)	//+Inf + (-Inf) = NaN
+					return this.getNumeric();	 
+				else{
+					this.mant[0]=1; //POMF! =3 became a NaN
+					return NaN;
+				}
+			else
+				return this.getNumeric();
+		else
+			if(num.isInf()){
+				this.init(num.getSgn(), num.getExp(), num.getMant());
+				return num.getNumeric();
+			}
+		//Main cake tomorrow...
+		if(this.getSgn() === num.getSgn()){}
+			//...using logic slid left LSL(), Negative, Add
 	}
 	this.sub = function(num){	//t1.sub(t2) -> t1 -= t2
 		return num;//in process...
@@ -93,11 +127,12 @@ function TeamTwo(){
 				filledArray(this.mant, 0)=== 1);
 	}
 	this.construct = function(num){	//used in 'equ(num)'
-		this.sgn = 0;
 		if(1/num < 0){	//special: 1/(-0) = -inf where -0 == 0
 			this.sgn = 1;
 			num *= -1;
-		}			
+		}
+		else
+			this.sgn = 0;
 		//Exposant et mantisse décimal
 		var logTwo = Math.log2(num); 				// Permet d'obtenir log2(number)
 		let exposant = Math.floor(logTwo)+1; 		// exposant = arrondiSup(log2(number))
@@ -128,27 +163,27 @@ function TeamTwo(){
 			}
 			i++;
 		}
-		array.shift();	//hidden bit 0.5
+		array.shift();	//delet hidden bit = 0.5
 		this.mant = array;
 	}
 	
 	this.setSgn = function(signe){
-		if(signe>=1)		  //never trust an human being!
-			this.sgn = 1;
-		else if(signe == -1) //cool exception! ;)
-			this.sgn = 1;
+		if(signe==1 || signe==-1)		  //never trust an human being!
+			this.sgn = 1;					//-1 cool exception! ;)
 		else
 			this.sgn = 0;
 	}
 	this.setExp = function(expo){
 		for(let i=0;i<9;i++){
-			if(expo[i] == 1)	//ensure to have zero if empty array
-				this.exp[i] = 1;// so 1001 -> 100100000 'faster, easy'
+			if(expo[i] == 1)			//ensure to have zero if empty array
+				this.exp[i] = 1;			// so 1001 -> 100100000 'faster, easy'
 			else
 				this.exp[i] = 0;
 		}
 	}
 	this.setMant = function(mantisse){
+		/* 	if you use init(sgn,exp,mant), USE this.getMant(), it will
+			return a 28 bits array, not 'this.mant' wich is 27 bits.*/
 		for(let i=1;i<28;i++){
 			if(mantisse[i] == 1)
 				this.mant[i-1]= 1;
@@ -163,8 +198,8 @@ function TeamTwo(){
 	this.getExp = function(){
 		return this.exp;
 	}
-	this.getMant = function(){
-		let twist = new Array(28);
+	this.getMant = function(){ // return 27+hidden bit. Never alterate data!
+		let twist = new Array(28);	
 		twist[0] = 1;
 		for(let i=0; i<this.mant.length; i++){
 			twist[i+1] = this.mant[i];
