@@ -30,7 +30,7 @@ function binLSL(array){	//Logic Slide Right
 	array.push(0);
 	array.shift();
 }
-function binAdd(arrayA,arrayB){ //only if array are same length! Because lazy!
+function binAdd(arrayA, arrayB){ //only if array are same length! Because lazy!
 	let xOR = 0;				//EXCEPTION: does return an array!
 	let carry = 0;
 	let mArryMe = Array(Array.length);
@@ -38,9 +38,10 @@ function binAdd(arrayA,arrayB){ //only if array are same length! Because lazy!
 		for(i=arrayA.length-1; i>=0; i--){
 			xOR = arrayA[i] ^ arrayB[i];
 			mArryMe[i] = xOR ^ carry;
-			carry = arrayA[i] & arrayB[i];
-		}
+			carry = ( (arrayA[i] & arrayB[i]) || (xOR & carry) );
+		}	//note: this is pseudo binary. Would have been chicken easy with simple bytes
 	}
+	return mArryMe;
 }
 function binInc(array){		//increment 'array' by 1
 	for(let i=array.length-1; i>=0; i--){

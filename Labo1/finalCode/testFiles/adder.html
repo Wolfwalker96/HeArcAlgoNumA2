@@ -8,13 +8,25 @@
 	<script>
 		var dump = new TeamTwo();
 		var lama = new TeamTwo();
-		dump.equ(NaN);
+		dump.equ(0);
 		lama.equ(-Infinity);
 		
 		var result = dump.add(lama);
 		
 		document.write(result +"</br>");
-		document.write(dump.getNumeric() +"</br>");
+		document.write(dump.getNumeric() +"</br></br>");
+		
+		var array1 = [1,1,0];	//2
+		var array2 = [0,1,1]; 	//1
+		binNegative(array2);	//1 -> -1
+		
+		
+		result = binAdd(array1, array2); 2 + (-1)
+		
+		document.write("Array1: " + array1 +"</br>");
+		document.write("-Array2: " + array2 +"</br>");
+		document.write("Adder: " + result +"</br>");
+		
 		
 		document.write("</br>-- END FILE --");
 

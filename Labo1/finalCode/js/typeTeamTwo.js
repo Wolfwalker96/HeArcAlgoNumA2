@@ -42,15 +42,21 @@ function TeamTwo(){
 		//this.equ(this.getNumeric()+num.getNumeric());
 		if(this.isNaN() || num.isNaN()){ //NaN CHECK!
 			fill(this.exp, 1);	//this become a NaN
-			this.mant[0] = 1;
+			fill(this.mant, 1);
 			return NaN;
 		}
 		
 		if(this.isZero())	//Zero CHECK!
-			if(num.isZero())	
-				return (this.sgn === num.sgn)? this.getNumeric() : 0;	// (-0)+(-0)=(-0)
+			if(num.isZero()){
+				if(this.sgn === num.sgn)	// (-0)+(-0)=(-0)			
+					return this.sgn;
+				else{
+					this.sgn = 0;
+					return 0;
+				}
+			}
 			else{ 				// 0 + n = n ; this <= num
-				this.init(num.getSgn(), num.getExp(), num.getMant());
+				this.init(+0 , num.getExp(), num.getMant());
 				return num.getNumeric();
 			}
 		else if(num.isZero())	//n + 0 = n ; nothing...
@@ -61,7 +67,7 @@ function TeamTwo(){
 				if(this.sgn === num.sgn)	//+Inf + (-Inf) = NaN
 					return this.getNumeric();	 
 				else{
-					this.mant[0]=1; //POMF! =3 became a NaN
+					fill(this.mant, 1); //POMF! =3 became a NaN
 					return NaN;
 				}
 			else
@@ -71,9 +77,11 @@ function TeamTwo(){
 				this.init(num.getSgn(), num.getExp(), num.getMant());
 				return num.getNumeric();
 			}
-		//Main cake tomorrow...
-		if(this.getSgn() === num.getSgn()){}
-			//...using logic slid left LSL(), Negative, Add
+			
+		//If everything is clear DO IT!
+		//Check for sgn
+			//do smth
+		return this.addSimple(num);
 	}
 	this.sub = function(num){	//t1.sub(t2) -> t1 -= t2
 		return num;//in process...
@@ -114,6 +122,10 @@ function TeamTwo(){
 		if(this.sgn==1){number*=-1;}
 		return number;
 	}
+	this.addSimple = function(num){
+		
+	}
+	
 	this.isZero = function(){	//return 1 if this = 0
 		return( filledArray(this.exp, 0) === 1 &&
 				filledArray(this.mant, 0)=== 1);
