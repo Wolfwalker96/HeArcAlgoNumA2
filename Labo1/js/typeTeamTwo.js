@@ -131,8 +131,13 @@ function TeamTwo(){
 		number = Math.pow(2,exposant)*mantisse;
 		if(this.sgn==1){number*=-1;}
 		
-		return Number(number).toFixed(this.precision);
-		//return Number(number);
+		let format = Number(number);
+		/*
+		if(format > 99999999){
+			return format.toExponential();
+		}
+		*/
+		return format.toFixed(this.precision);
 	}
 	this.addSimple = function(num){	//not so simple...
 		let alpha = new TeamTwo;	//used in this.add(num)
@@ -353,9 +358,9 @@ function TeamTwo(){
 		return twist;
 	}
 	this.displayBasic = function(id){
-		document.getElementById(id).innerHTML=(this.getSgn() + "<br/>" + this.getExp() + "<br/>" + this.getMant() + "</br>");
+		document.getElementById(id).innerHTML=("[ "+this.getSgn() + " ]</br>[ " + this.getExp() + " ]</br>[ " + this.getMant() + " ]</br>");
 	}
 	this.displayNumeric = function(id){
-		document.getElementById(id).innerHTML=("Value: " + this.getNumeric() +"</br>");
+		document.getElementById(id).innerHTML=("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</br>" + this.getNumeric() +"</br>");
 	}
 }

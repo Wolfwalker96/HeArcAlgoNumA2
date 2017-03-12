@@ -31,3 +31,20 @@ function displayAdd(one, two){
 	value.displayBasic("addAnswerBin");
 	value.displayNumeric("addAnswerDeci");
 }
+function PI(){
+	let limite = 5;
+	let value = new TeamTwo;
+	value.equ(0);
+	let temp = new TeamTwo;
+	value.equ(0);
+	
+	for(let n=0; n<limite; n++){
+		temp.equ( 
+			(4/(8*n + 1) - 2/(8*n + 4) - 1/(8*n + 5) - 1/(8*n +6)) 
+			* Math.pow(1/16,n)
+		);
+		value.add(temp);
+	}
+	value.displayBasic("piBin");
+	value.displayNumeric("piDec");
+}

@@ -64,22 +64,30 @@ Paul Jeanbourquin
     <span>+</span>
     <input type=text id="add2Entry" step="any"
 	onchange="displayAdd(add1Entry, add2Entry)"
-	onkeyup="displayAdd(add1Entry, add2Entry)"/></br>
+	onkeyup="displayAdd(add1Entry, add2Entry)"/></br></br>
     <!--<input type=submit value="Calculer" />-->
   <div id="addAnswerBin">
   </div>
   <div id="addAnswerDeci">
   </div>
+  
+ <h3>Pi</h3>
+  <div id="piBin">
+  </div>
+  <div id="piDec">
+  </div>
+  <script>PI();</script>
+  
   </br>
   <h4>Notes:</h4>
   <ul>
 	  <li>
 		  Les inputs en décimal supportent le format texte! Essayez d'y placer
-		  Infinity, NaN ou -0!
+		  Infinity, NaN ou -0! (Essayez de tout casser, mini challenge)
 	  </li>
 	  <li>
 		  -0 s'affiche comme étant 0 mais réagis bien tel un -0.
-		  Voir le cas "1/(-0) = -Infinity" dans demoFile.
+		  Voir le cas "1/(-0) = -Infinity" dans testFiles. Cas spécial: (-0) + (-0) = (-0)
 	  </li>
 	  <li>
 		  1 ET -1 sont utilisables pour set le signe négatif... 
