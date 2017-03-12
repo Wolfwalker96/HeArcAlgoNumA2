@@ -17,6 +17,7 @@ function TeamTwo(){
 	this.sgn = 0;
 	this.exp = new Array(9);
 	this.mant = new Array(27);
+	this.precision = 8;
 	
 	/*
 	equ(numeric), init(sgn, exp, mant), 
@@ -130,7 +131,8 @@ function TeamTwo(){
 		number = Math.pow(2,exposant)*mantisse;
 		if(this.sgn==1){number*=-1;}
 		
-		return Number(number).toFixed(8);
+		return Number(number).toFixed(this.precision);
+		//return Number(number);
 	}
 	this.addSimple = function(num){	//not so simple...
 		let alpha = new TeamTwo;	//used in this.add(num)
@@ -176,7 +178,7 @@ function TeamTwo(){
 		let zero = new Array(diff.length);
 		fill(zero, 0);
 		for(let i=0; (binEqu(zero, diff) === 0) ; i++){
-			if(i > big.mant.length-1){
+			if(i > big.mant.length-i-2){
 				fill(small.mant,0); //if not significant -> trash!
 				break;
 			}
@@ -209,7 +211,11 @@ function TeamTwo(){
 			binNegative(tempArray);
 		}
 		
-		//Where does the mantissa starts?
+		//8. Round up if significant
+		if(tempArray[1+28] === 1)
+			tempArray[28] = 1;
+		
+		//9. Where does the mantissa starts?
 		let expChange = 1; //exp change start at 1 because step 2 (positiver)
 		for(let i=0; i<tempArray.length; i++){
 			if(tempArray[0] == 0){
@@ -231,6 +237,7 @@ function TeamTwo(){
 			binDec(big.exp);
 		}
 		
+		this.setSgn(big.sgn);
 		this.setExp(big.exp);
 		this.setMant(tempArray);//return tempArray, with hidden bit.
 		return this.getNumeric();
@@ -286,9 +293,19 @@ function TeamTwo(){
 			i++;
 		}
 		array.shift();	//delet hidden bit = 0.5
+		
+		denominator = Math.pow(2,i+1);//ceil
+		if(1/denominator<=mantisse){
+			array[26]=1;
+		}
+			
 		this.mant = array;
 	}
 	
+	this.setPrecision = function(num){
+		if(num>0)
+			this.precision = Number(num);
+	}
 	this.setSgn = function(signe){
 		if(signe==1 || signe==-1)		  //never trust an human being!
 			this.sgn = 1;					//-1 cool exception! ;)
@@ -313,7 +330,10 @@ function TeamTwo(){
 				this.mant[i-1] = 0;
 		}
 	}
-
+	
+	this.getPrecision = function(){
+		return this.precision;
+	}
 	this.getSgn = function(){
 		if(this.sgn === 1)
 			return 1;
