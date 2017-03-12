@@ -1,0 +1,51 @@
+<html>
+<head>
+</head>
+<body>
+	<script src="../js/typeTeamTwo.js" ></script>
+	<script src="../js/binaryOperation.js" ></script>
+	<script src="../js/arrayFunc.js" ></script>
+	<script>
+		var dump = new TeamTwo();
+		var lama = new TeamTwo();
+		dump.equ(-10);
+		lama.equ(10);
+		
+		var result = dump.sub(lama);
+		
+		document.write(result +"</br>");
+		document.write(dump.getNumeric() +"</br></br>");
+		
+		var array1 = [0,1,0];	//2
+		var array2 = [0,0,1]; 	//1
+		binNegative(array2);	//1 -> -1
+		
+		
+		result = binAdd(array1, array2);
+		
+		document.write("Array1: " + array1 +"</br>");
+		document.write("-Array2: " + array2 +"</br>");
+		document.write("binAdd: " + result +"</br></br>");
+		
+		var array3 = [1,1,0];
+		var array4 = [1,1,1]; 
+		
+		result = binBgt(array3, array4);
+		document.write("binBgt: " + result +"</br></br>");
+		
+		
+		document.write("Array3: " + array3 +"</br>");
+		binDec(array3);
+		document.write("Array3: " + array3 +"</br>");
+		
+		document.write("</br>-- END FILE --");
+
+
+		/*
+				instant -> F5 (pas de presse bouton)
+				easy	-> change 2 var
+				propre  -> propre
+		*/
+	</script>
+</body>
+</html>

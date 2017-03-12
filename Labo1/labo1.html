@@ -9,7 +9,11 @@ Paul Jeanbourquin
 <head>
   <meta charset="utf-8">
   <title> Team 2 - Labo 1</title>
-  <script src="labo1.js"></script>
+  <script src="js/typeTeamTwo.js"></script>
+  <script src="js/arrayFunc.js"></script>
+  <script src="js/binaryOperation.js"></script>
+  <script src="js/main.js"></script>
+  <script> var num = new TeamTwo(); </script>
 </head>
 
 <body>
@@ -18,12 +22,11 @@ Paul Jeanbourquin
     <h2>Marc Friedli, Paul Jeanbourquin et Florian Fasmeyer</h2>
   </div>
 
-  <h3>Convertion Decimal -> binaire</h3>
+  <h3>Conversion Decimal >> binaire</h3>
 
     <span>Entrez un nombre décimal : </span>
-    <input type=number id="decimalEntry"  step="any"/></br>
-    <input type=submit value="Convertir" onclick="convertDeciBin(decimalEntry)"/>
-
+    <input type=text id="decimalEntry"  step="any" onchange="displayDecToBin(decimalEntry)" onkeyup="displayDecToBin(decimalEntry)" /></br>
+    <!-- <input type=submit value="Convertir" onclick="displayDecToBin(decimalEntry)"/> --></br>
   <div id="convertDeciBinAnswerBin">
   </div>
   <div id="convertDeciBinAnswerDeci">
@@ -33,14 +36,20 @@ Paul Jeanbourquin
   <div id="debug">
   </div>
 
-  <h3>Convertion binaire -> decimal</h3>
+  <h3>Conversion binaire >> decimal</h3>
     <span>Entrez un nombre signe : </span>
-    <input type=number id="signeEntry"/></br>
+    <input type=number id="signeEntry"
+	onkeyup="displayBinToDec(signeEntry, expoEntry, mantisseEntry)" 
+	onclick="displayBinToDec(signeEntry, expoEntry, mantisseEntry)"/></br>
     <span>Entrez un nombre exposant : </span>
-    <input type=number id="expoEntry"/></br>
+    <input type=number id="expoEntry"
+	onkeyup="displayBinToDec(signeEntry, expoEntry, mantisseEntry)" 
+	onclick="displayBinToDec(signeEntry, expoEntry, mantisseEntry)"/></br>
     <span>Entrez un nombre mantisse* : </span>
-    <input type=number id="mantisseEntry"/></br>
-    <input type=button value="Convertir" onclick="convertBinDeci(signeEntry, expoEntry, mantisseEntry);" /><br/>
+    <input type=number id="mantisseEntry"
+	onkeyup="displayBinToDec(signeEntry, expoEntry, mantisseEntry)" 
+	onclick="displayBinToDec(signeEntry, expoEntry, mantisseEntry)"/>
+    <!-- <input type=button value="Convertir"  /> --><br/>
     *Bit caché compris<br/><br/>
   <div id="convertBinDeciAnswerBin">
   </div>
@@ -49,14 +58,38 @@ Paul Jeanbourquin
 
   <h3>Addition</h3>
     <span>Nombres : </span>
-    <input type=number id="add1Entry" step="any"/>
+    <input type=text id="add1Entry" step="any"
+	onchange="displayAdd(add1Entry, add2Entry)"
+	onkeyup="displayAdd(add1Entry, add2Entry)"/>
     <span>+</span>
-    <input type=number id="add2Entry" step="any"/></br>
-    <input type=submit value="Calculer" onclick="add(add1Entry, add2Entry)"/>
+    <input type=text id="add2Entry" step="any"
+	onchange="displayAdd(add1Entry, add2Entry)"
+	onkeyup="displayAdd(add1Entry, add2Entry)"/></br>
+    <!--<input type=submit value="Calculer" />-->
   <div id="addAnswerBin">
   </div>
   <div id="addAnswerDeci">
   </div>
-
+  </br>
+  <h4>Notes:</h4>
+  <ul>
+	  <li>
+		  Les inputs en décimal supportent le format texte! Essayez d'y placer
+		  Infinity, NaN ou -0!
+	  </li>
+	  <li>
+		  -0 s'affiche comme étant 0 mais réagis bien tel un -0.
+		  Voir le cas "1/(-0) = -Infinity" dans demoFile.
+	  </li>
+	  <li>
+		  1 ET -1 sont utilisables pour set le signe négatif... 
+		  pour les étourdis. :-)
+	  </li>
+	  <li>
+		  Dans conversion bin>>dec, pas besoin d'écrire les chiffres en entier.
+		  Un exposant de 11 devient 110000000. De plus ne vous inquiétez pas,
+		  dépasser le nb de bits ne fait rien.
+	  </li>
+  </ul>
 </body>
 </html>
