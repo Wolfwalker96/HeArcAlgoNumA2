@@ -9,7 +9,7 @@
 Description:	
 
 	TeamTwo is a floating type of 37 pseudo bits.
-	bit are being simulated with arrays, get/set
+	bits are being simulated with arrays, get/set
 	functions ensure that they behave as such. 
 	
 Specs:
