@@ -9,14 +9,14 @@
 Description:	
 
 	TeamTwo is a floating type of 37 pseudo bits.
-	bits are being simulated with arrays, get/set
+	bit are being simulated with arrays, get/set
 	functions ensure that they behave as such. 
 	
 Specs:
 	
 	Exponent:	
 		
-		e		[510;0]
+		e	[510;0]
 		e-255 	[255;-255]
 		
 		With an exponent of 0 the hidden bit has a value of 0.5
@@ -28,8 +28,8 @@ Specs:
 				
 	Mantissa:	
 	
-		accuracy			  	   28 bits	  [1]111 1111 1111 1111 1111 1111 1111
-		accuracy(deci) 	   	    8 decimals							   268'435'456
+		accuracy		28 bits	  	[1]111 1111 1111 1111 1111 1111 1111
+		accuracy(deci) 	   	8 decimals	268'435'456
 		
 		Can represent every integers from 268'435'456 to -268'435'456 without innacuracy
 		
@@ -48,20 +48,20 @@ Manual:
 
 	Numerical operations:
 		
-		declaration			var num = new TeamTwo;
+		declaration		var num = new TeamTwo;
 		initialisation		num.equ(n);
-		addition			num.add(n);
+		addition		num.add(n);
 		substraction		num.sub(n);
-		Reading				num.getNumeric();	return n
+		Reading			num.getNumeric();	return n
 		
 	Binary operations:
 		n = {1,0}
 		
 		num.init(n, [n x 9], [n x 28]);
 		
-		num.setSgn	(n);  
-		num.setExp	([n x 9]);
-		num.setMant	([n x 28]);*
+		num.setSgn		(n);  
+		num.setExp		([n x 9]);
+		num.setMant		([n x 28]);*
 		
 		num.getSgn();		return  n
 		num.getExp();		return [n x 9]
@@ -78,10 +78,10 @@ Manual:
 		it to be 1 (negative)
 
 	Special cases:
-					<sgn 1>	<exp 9>	<mant 27>	info
-		 0 			0	 	0 		0
-		-0 			1	 	0 		0
-		NaN			0		1		X			X>0	
+				<sgn 1>	<exp 9>	<mant 27>	info
+		 0 		0	 	0 		0
+		-0 		1	 	0 		0
+		NaN		0		1		X			X>0	
 		INF+		0		1		0
 		INF-		1		1 		0
 		
@@ -94,7 +94,7 @@ File content:
 		README.txt	-	The very file you are reading right now...
 		labo1.html	-	Display the results of the project
 		js
-			main.js				-	demonstrate the use of the TeamTwo type
+			main.js			-	demonstrate the use of the TeamTwo type
 			typeTeamTwo.js		-	Heart of the project! The type we worked on
 			binaryOperatoin.js	-	Simulate byte operations with arrays
 			arrayFunc.js		-	Utiliy functions to work with arrays 
