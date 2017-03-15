@@ -8,7 +8,6 @@ var func1 = function(x){
 var func2 = function(x){
   return x/(1-(x*x));
 }
-
 // h(x)=0 in the interval [start,end]
 function Root(h,start,end){
   // Algo de résolution
@@ -95,7 +94,11 @@ function UIElement(){
   document.getElementById('roots').innerHTML = "Calculating";
 
   // Finds the roots
+  var timeStart = new Date();
   var roots = Explorer(-100,100,h);
+  var timeEnd = new Date();
+  var duration = timeEnd.getMilliseconds() - timeStart.getMilliseconds();
+  console.log(duration+"ms");
   var annotation = [];
   // Display the roots and prepare for show they on the plot
   document.getElementById('roots').innerHTML = "";
@@ -115,5 +118,4 @@ function UIElement(){
     annotations: annotation
   });
   document.getElementById("disclaimer").style.visibility = "hidden";
-
 }
