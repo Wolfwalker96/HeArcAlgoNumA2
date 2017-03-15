@@ -9,26 +9,12 @@ var func2 = function(x){
   return x/(1-(x*x));
 }
 
-
-// z(x)
-var gen1 = function(x){
-  return Math.sin(x)-x/13;
-}
-
-// y(x)
-var gen2 = function(x){
-  return x/(1-(x*x));
-}
-
-// f(x)=g(x)
-function Racine(f,g,a2,b2){
+// h(x)=0 in the interval [start,end]
+function Root(h,start,end){
   // Algo de résolution
 
-  var a = a2 ;
-  var b = b2;
-
-  // Une fonction dans une fonction... Le JS c'est beau :)
-  function h(x){ return f(x)-g(x); }
+  var a = start ;
+  var b = end;
 
   var mnew = a + b;
   var mold = 2*mnew;
@@ -50,36 +36,84 @@ function Racine(f,g,a2,b2){
   }
   return mnew;
 }
-
+/*
 // Récuper les données et execute
-function Execute(a,b,fin=100){
-  c=Racine(func1,func2,a,b);
+function Execute(a,b,fin=10){
+  // Une fonction dans une fonction... Le JS c'est beau :)
+  function h(x){ return func1(x)-func2(x); }
+  c=Root(h(x),a,b);
   console.log(c);
-  if(fin==0) return "pommes";
-  Execute(a,c,fin-1);
-  Execute(c,b,fin-1);
+  if(fin!=0){
+    Execute(a,c,fin-1);
+    Execute(c,b,fin-1);
 }
+}
+*/
 
-function Explorer(a,b,f,g){
-  function h(x){ return f(x)-g(x); }
-  var oldValue=h(a);
+/*  The Explorer function analyse the sign of the function h
+ *  in the interval between a and b. This function execute Root
+ *  when it think than there is a root here.
+ */
+function Explorer(a,b,h){
+  var roots =[];
+
+  // Start value
+  var oldSign=Math.sign(h(a));
   var oldIndex=a;
+
+  //Exploration of the function
   for(i=a+0.1;i<=b;i+=0.1){
-    var newValue=Math.sign(h(i));
-    if(newValue!=oldValue){
+    var newSign=Math.sign(h(i));
+    if(newSign!=oldSign){
+      // There is a sign changement between oldIndex and i (current index)
       console.log("a = "+oldIndex+" b = "+i);
-      console.log(Math.fround(Racine(f,g,oldIndex,i)));
-      oldValue=newValue;
+      var root = Math.fround(Root(h,oldIndex,i)); // we looking for the root with the bisection method
+      /*  In some case of discontinuity there at the left/right Infinity
+       *  and on the other side -Infinity and the algorithm thinks it's a root
+       *  So we check that the h(x) for x is not Infinity or -Infinity. This removes
+       *  the discontinuity of the roots.
+       */
+      if(Math.abs(h(root))!=Infinity){
+        console.log(root);
+        roots.push(root);
+      }
+      oldSign=newSign;
     }
     oldIndex=i;
   }
-}
-
-// Valide le formulaire
-function ValidateForm(){
-
+  return roots;
 }
 
 // Execution automatique
 //Execute(-100,100);
-Explorer(-100,100,func1,func2);
+
+
+function UIElement(){
+  // A function in a function... Js is wonderful :)
+  function h(x){ return func1(x)-func2(x); }
+  // Say user something is happening
+  document.getElementById('roots').innerHTML = "Calculating";
+
+  // Finds the roots
+  var roots = Explorer(-100,100,h);
+  var annotation = [];
+  // Display the roots and prepare for show they on the plot
+  document.getElementById('roots').innerHTML = "";
+  roots.forEach(function(root){
+    document.getElementById("roots").innerHTML += root.toFixed(7)+", ";
+    annotation.push({x:root})
+  })
+  // Plot the function
+  functionPlot({
+    target: '#plot',
+    xAxis: {domain: [-100, 100]},
+    data: [
+      {fn: 'sin(x)-(x/13)-x/(1-x^2)'},
+      //{fn: 'sin(x)-(x/13)'},
+      //{fn: 'x/(1-x^2)'}
+    ],
+    annotations: annotation
+  });
+  document.getElementById("disclaimer").style.visibility = "hidden";
+
+}

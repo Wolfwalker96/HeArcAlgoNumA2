@@ -1,8 +1,40 @@
 <html>
 <head>
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <script src="http://maurizzzio.github.io/function-plot/js/function-plot.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/mathjs/3.10.0/math.min.js"></script>
   <script src="labo2.js" ></script>
 </head>
 <body>
-  
+  <h1>Algorithme Numérique Labo 2</h1>
+  <div style="font-size:1.4em;">Equipe A2 - Paul Jeanbourquin, Marc Friedli, Florian Fasmeyer</div>
+  <h2>Fonctions</h2>
+  <p>
+  <code>
+    f(x)=sin(x)-(x/13)
+  </code>
+  </p>
+  <p>
+  <code>
+    g(x)=x/(1-x^2)
+  </code>
+  </p>
+  <p>
+  <code>
+    f(x)=g(x) => f(x)-g(x)=0 => h(x)=0 où h(x)=f(x)-g(x)</br>
+    h(x)=sin(x)-(x/13)-x/(1-x^2)
+  </code>
+  </p>
+  <input type=button value=Solve onclick="UIElement();" />
+  <h2>Graphique</h2>
+  <div id="plot">
+
+  </div>
+  <span id="disclaimer">Appuyer sur solve pour voir un graphe</span>
+  <br />
+  <h2>Racines</h2>
+  <span id=roots> Appuyer sur solve pour voir les racines</span>
 </body>
+<script>
+</script>
 </html>
