@@ -87,35 +87,62 @@ function Explorer(a,b,h){
 //Execute(-100,100);
 
 
-function UIElement(){
-  // A function in a function... Js is wonderful :)
-  function h(x){ return func1(x)-func2(x); }
+function SolveFunc1(){
   // Say user something is happening
-  document.getElementById('roots').innerHTML = "Calculating";
+  document.getElementById('rootsF1').innerHTML = "Calculating";
 
   // Finds the roots
   var timeStart = new Date();
-  var roots = Explorer(-100,100,h);
+  var roots = Explorer(-100,100,func1);
   var timeEnd = new Date();
   var duration = timeEnd.getMilliseconds() - timeStart.getMilliseconds();
   console.log(duration+"ms");
   var annotation = [];
   // Display the roots and prepare for show they on the plot
-  document.getElementById('roots').innerHTML = "";
+  document.getElementById('rootsF1').innerHTML = "";
   roots.forEach(function(root){
-    document.getElementById("roots").innerHTML += root.toFixed(7)+", ";
+    document.getElementById("rootsF1").innerHTML += root.toFixed(7) + "<br />";
     annotation.push({x:root})
   })
   // Plot the function
   functionPlot({
-    target: '#plot',
+    target: '#plotF1',
     xAxis: {domain: [-100, 100]},
     data: [
-      {fn: 'sin(x)-(x/13)-x/(1-x^2)'},
+      {fn: 'sin(x)-(x/13)'}
       //{fn: 'sin(x)-(x/13)'},
       //{fn: 'x/(1-x^2)'}
     ],
     annotations: annotation
   });
-  document.getElementById("disclaimer").style.visibility = "hidden";
+  document.getElementById("disclaimerF1").style.visibility = "hidden";
+}
+
+function SolveFunc2(){
+  // Say user something is happening
+  document.getElementById('rootsF2').innerHTML = "Calculating";
+
+  // Finds the roots
+  var timeStart = new Date();
+  var roots = Explorer(-100,100,func2);
+  var timeEnd = new Date();
+  var duration = timeEnd.getMilliseconds() - timeStart.getMilliseconds();
+  console.log(duration+"ms");
+  var annotation = [];
+  // Display the roots and prepare for show they on the plot
+  document.getElementById('rootsF2').innerHTML = "";
+  roots.forEach(function(root){
+    document.getElementById("rootsF2").innerHTML += root.toFixed(7) + "<br />";
+    annotation.push({x:root})
+  })
+  // Plot the function
+  functionPlot({
+    target: '#plotF2',
+    xAxis: {domain: [-100, 100]},
+    data: [
+      {fn: 'x/(1-x^2)'}
+    ],
+    annotations: annotation
+  });
+  document.getElementById("disclaimerF2").style.visibility = "hidden";
 }
