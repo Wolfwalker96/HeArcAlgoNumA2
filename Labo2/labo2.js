@@ -65,13 +65,15 @@ function Explorer(a,b,h){
     var newSign=Math.sign(h(i));
     if(newSign!=oldSign){
       // There is a sign changement between oldIndex and i (current index)
-      console.log("a = "+oldIndex+" b = "+i);
-      var root = Math.fround(Root(h,oldIndex,i)); // we looking for the root with the bisection method
+      //console.log("a = "+oldIndex+" b = "+i);
+      var root = Root(h,oldIndex,i);
       /*  In some case of discontinuity there at the left/right Infinity
        *  and on the other side -Infinity and the algorithm thinks it's a root
        *  So we check that the h(x) for x is not Infinity or -Infinity. This removes
        *  the discontinuity of the roots.
        */
+       console.log("Valeur : "+root);
+       console.log("func1("+root+") = "+func1(root));
       if(Math.abs(h(root))!=Infinity){
         console.log(root);
         roots.push(root);
