@@ -1,3 +1,8 @@
+/*
+ *  Numerical Algorithm - 2nd Labo.
+ *  Paul Jeanbourquin, Marc Friedli, Florian Fasmeyer
+ *  27.03.2017
+ */
 
 // f(x)
 var func1 = function(x){
@@ -9,25 +14,25 @@ var func2 = function(x){
   return x/(1-(x*x));
 }
 
+// e Machine (most little interval)
 var eMach = Math.pow(10,-14);
 
-// h(x)=0 in the interval [start,end]
+/*
+ *  This function finds a root of h between start and end
+ *  using the bissection method.
+ *  It returns the root and the maximum error on x axis.
+ */
 function Root(h,start,end){
-  // Algo de résolution
-
-  var a = start ;
+  var a = start;
   var b = end;
 
   var mnew = a + b;
   var mold = 2*mnew;
 
   while(Math.abs(mnew-mold)>=eMach){
-    //console.log("mnew = "+mnew);
-    //console.log("mold = "+mold);
     mold = mnew;
     mnew = (a+b)/2
-    //console.log("a = "+a);
-    //console.log("b = "+b);
+
     var k = h(a);
     var m = h(mnew);
     if(m*k<=0) b = mnew;
@@ -40,9 +45,11 @@ function Root(h,start,end){
   return [mnew,error];
 }
 
-/*  The Explorer function analyse the sign of the function h
+/*
+ *  The Explorer function analyse the sign of the function h
  *  in the interval between a and b. This function execute Root
  *  when it think than there is a root here.
+ *  It returns a table of roots and maximum errors
  */
 function Explorer(a,b,h){
   var roots =[];
@@ -56,17 +63,13 @@ function Explorer(a,b,h){
     var newSign=Math.sign(h(i));
     if(newSign!=oldSign){
       // There is a sign changement between oldIndex and i (current index)
-      //console.log("a = "+oldIndex+" b = "+i);
       var root = Root(h,oldIndex,i);
-      /*  In some case of discontinuity there at the left/right Infinity
-       *  and on the other side -Infinity and the algorithm thinks it's a root
+      /*  In some case of discontinuity there are Infinity on a side
+       *  and -Infinity on the other side and the algorithm thinks it's a root.
        *  So we check that the h(x) for x is not Infinity or -Infinity. This removes
        *  the discontinuity of the roots.
        */
-       //console.log("Valeur : "+root[0]);
-       //console.log("func1("+root[0]+") = "+func1(root[0]));
       if(Math.abs(h(Math.fround(root[0])))!=Infinity){
-        //console.log(root);
         roots.push(root);
       }
       oldSign=newSign;
@@ -76,8 +79,15 @@ function Explorer(a,b,h){
   return roots;
 }
 
+/*
+ *  This function is a proxy between the alogrithm and the graphical interface.
+ *  It needs :
+ *    - the function as a string (funcStr).
+ *    - the function as a JS function (funjs)
+ *    - the part of the webpage where it must show the infos (idUi).
+ */
 function SolveFunc(funcStr, funjs, idUi){
-  // Say user something is happening
+  // Say something is happening
   document.getElementById("roots"+idUi).innerHTML = "<tr><td>Calculating</td></tr>";
 
   // Finds the roots
@@ -86,6 +96,7 @@ function SolveFunc(funcStr, funjs, idUi){
   var timeEnd = new Date();
   var duration = timeEnd.getMilliseconds() - timeStart.getMilliseconds();
   var annotation = [];
+
   // Display the roots and prepare for show they on the plot
   document.getElementById('roots'+idUi).innerHTML = "<tr><th>Racines</th><th>Erreur en Y</th><th>Erreur maximum en X</th><tr>";
   roots.forEach(function(root){
@@ -93,6 +104,7 @@ function SolveFunc(funcStr, funjs, idUi){
     annotation.push({x:root[0]})
   })
   document.getElementById("duration"+idUi).innerHTML = "Trouvées en "+duration+"ms";
+
   // Plot the function
   functionPlot({
     target: '#plot'+idUi,
@@ -105,10 +117,12 @@ function SolveFunc(funcStr, funjs, idUi){
   document.getElementById("disclaimer"+idUi).style.visibility = "hidden";
 }
 
+// Click event handler for function 1
 function ExecuteSolveF1(){
   SolveFunc("sin(x)-(x/13)",func1,'F1');
 }
 
+// Click event handler for function 2
 function ExecuteSolveF2(){
     SolveFunc('x/(1-x^2)',func2,'F2');
 }
