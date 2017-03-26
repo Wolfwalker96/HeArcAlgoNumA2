@@ -64,7 +64,8 @@ function Explorer(a,b,h){
     if(newSign!=oldSign){
       // There is a sign changement between oldIndex and i (current index)
       var root = Root(h,oldIndex,i);
-      /*  In some case of discontinuity there are Infinity on a side
+      /*
+       *  In some case of discontinuity there are Infinity on a side
        *  and -Infinity on the other side and the algorithm thinks it's a root.
        *  So we check that the h(x) for x is not Infinity or -Infinity. This removes
        *  the discontinuity of the roots.
