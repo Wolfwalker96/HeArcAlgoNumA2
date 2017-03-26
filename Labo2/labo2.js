@@ -9,7 +9,7 @@ var func2 = function(x){
   return x/(1-(x*x));
 }
 
-var eMach = Math.pow(10,-10);
+var eMach = Math.pow(10,-14);
 
 // h(x)=0 in the interval [start,end]
 function Root(h,start,end){
@@ -36,8 +36,8 @@ function Root(h,start,end){
       k = m
     }
   }
-  console.log("Erreur ? : "+(mnew-mold));
-  return mnew;
+  var error = (mnew-mold);
+  return [mnew,error];
 }
 
 /*  The Explorer function analyse the sign of the function h
@@ -63,10 +63,10 @@ function Explorer(a,b,h){
        *  So we check that the h(x) for x is not Infinity or -Infinity. This removes
        *  the discontinuity of the roots.
        */
-       console.log("Valeur : "+root);
-       console.log("func1("+root+") = "+func1(root));
-      if(Math.abs(h(root))!=Infinity){
-        console.log(root);
+       //console.log("Valeur : "+root[0]);
+       //console.log("func1("+root[0]+") = "+func1(root[0]));
+      if(Math.abs(h(Math.fround(root[0])))!=Infinity){
+        //console.log(root);
         roots.push(root);
       }
       oldSign=newSign;
@@ -85,14 +85,14 @@ function SolveFunc(funcStr, funjs, idUi){
   var roots = Explorer(-100,100,funjs);
   var timeEnd = new Date();
   var duration = timeEnd.getMilliseconds() - timeStart.getMilliseconds();
-  console.log(duration+"ms");
   var annotation = [];
   // Display the roots and prepare for show they on the plot
-  document.getElementById('roots'+idUi).innerHTML = "<tr><th>Racines</th><th>Erreur maximum</th><td>";
+  document.getElementById('roots'+idUi).innerHTML = "<tr><th>Racines</th><th>Erreur en Y</th><th>Erreur maximum en X</th><tr>";
   roots.forEach(function(root){
-    document.getElementById("roots"+idUi).innerHTML += "<tr><td>"+root.toFixed(7) + "</td><td>"+1+"</td></tr>";
-    annotation.push({x:root})
+    document.getElementById("roots"+idUi).innerHTML += "<tr><td>"+root[0].toFixed(7)+"</td><td>"+funjs(root[0])+"</td><td>"+root[1]+"</td></tr>";
+    annotation.push({x:root[0]})
   })
+  document.getElementById("duration"+idUi).innerHTML = "Trouvées en "+duration+"ms";
   // Plot the function
   functionPlot({
     target: '#plot'+idUi,
