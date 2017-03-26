@@ -8,6 +8,9 @@ var func1 = function(x){
 var func2 = function(x){
   return x/(1-(x*x));
 }
+
+var eMach = Math.pow(10,-10);
+
 // h(x)=0 in the interval [start,end]
 function Root(h,start,end){
   // Algo de résolution
@@ -18,7 +21,7 @@ function Root(h,start,end){
   var mnew = a + b;
   var mold = 2*mnew;
 
-  while(mnew-mold!=0){
+  while(Math.abs(mnew-mold)>=eMach){
     //console.log("mnew = "+mnew);
     //console.log("mold = "+mold);
     mold = mnew;
@@ -33,21 +36,9 @@ function Root(h,start,end){
       k = m
     }
   }
+  console.log("Erreur ? : "+(mnew-mold));
   return mnew;
 }
-/*
-// Récuper les données et execute
-function Execute(a,b,fin=10){
-  // Une fonction dans une fonction... Le JS c'est beau :)
-  function h(x){ return func1(x)-func2(x); }
-  c=Root(h(x),a,b);
-  console.log(c);
-  if(fin!=0){
-    Execute(a,c,fin-1);
-    Execute(c,b,fin-1);
-}
-}
-*/
 
 /*  The Explorer function analyse the sign of the function h
  *  in the interval between a and b. This function execute Root
@@ -85,66 +76,39 @@ function Explorer(a,b,h){
   return roots;
 }
 
-// Execution automatique
-//Execute(-100,100);
-
-
-function SolveFunc1(){
+function SolveFunc(funcStr, funjs, idUi){
   // Say user something is happening
-  document.getElementById('rootsF1').innerHTML = "Calculating";
+  document.getElementById("roots"+idUi).innerHTML = "<tr><td>Calculating</td></tr>";
 
   // Finds the roots
   var timeStart = new Date();
-  var roots = Explorer(-100,100,func1);
+  var roots = Explorer(-100,100,funjs);
   var timeEnd = new Date();
   var duration = timeEnd.getMilliseconds() - timeStart.getMilliseconds();
   console.log(duration+"ms");
   var annotation = [];
   // Display the roots and prepare for show they on the plot
-  document.getElementById('rootsF1').innerHTML = "";
+  document.getElementById('roots'+idUi).innerHTML = "<tr><th>Racines</th><th>Erreur maximum</th><td>";
   roots.forEach(function(root){
-    document.getElementById("rootsF1").innerHTML += root.toFixed(7) + "<br />";
+    document.getElementById("roots"+idUi).innerHTML += "<tr><td>"+root.toFixed(7) + "</td><td>"+1+"</td></tr>";
     annotation.push({x:root})
   })
   // Plot the function
   functionPlot({
-    target: '#plotF1',
+    target: '#plot'+idUi,
     xAxis: {domain: [-100, 100]},
     data: [
-      {fn: 'sin(x)-(x/13)'}
-      //{fn: 'sin(x)-(x/13)'},
-      //{fn: 'x/(1-x^2)'}
+      {fn: funcStr}
     ],
     annotations: annotation
   });
-  document.getElementById("disclaimerF1").style.visibility = "hidden";
+  document.getElementById("disclaimer"+idUi).style.visibility = "hidden";
 }
 
-function SolveFunc2(){
-  // Say user something is happening
-  document.getElementById('rootsF2').innerHTML = "Calculating";
+function ExecuteSolveF1(){
+  SolveFunc("sin(x)-(x/13)",func1,'F1');
+}
 
-  // Finds the roots
-  var timeStart = new Date();
-  var roots = Explorer(-100,100,func2);
-  var timeEnd = new Date();
-  var duration = timeEnd.getMilliseconds() - timeStart.getMilliseconds();
-  console.log(duration+"ms");
-  var annotation = [];
-  // Display the roots and prepare for show they on the plot
-  document.getElementById('rootsF2').innerHTML = "";
-  roots.forEach(function(root){
-    document.getElementById("rootsF2").innerHTML += root.toFixed(7) + "<br />";
-    annotation.push({x:root})
-  })
-  // Plot the function
-  functionPlot({
-    target: '#plotF2',
-    xAxis: {domain: [-100, 100]},
-    data: [
-      {fn: 'x/(1-x^2)'}
-    ],
-    annotations: annotation
-  });
-  document.getElementById("disclaimerF2").style.visibility = "hidden";
+function ExecuteSolveF2(){
+    SolveFunc('x/(1-x^2)',func2,'F2');
 }
