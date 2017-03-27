@@ -19,7 +19,7 @@ var eMach = Math.pow(10,-14);
 
 /*
  *  This function finds a root of h between start and end
- *  using the bissection method.
+ *  using the bisection method.
  *  It returns the root and the maximum error on x axis.
  */
 function Root(h,start,end){
