@@ -11,4 +11,8 @@ Create a float type on 37bits.
 
 ### Laboratory 2
 
-Made a function who solve equations.
+Made a function which solve equations.
+
+### Laboratory 3
+
+Made a script which solve linear systems with the Gauss's method.
