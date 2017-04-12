@@ -10,7 +10,6 @@
   <title>Algorithme Numérique Labo 3 - Equipe A2</title>
   <style>
     /*
-     * !!!!!! REMEMBER TO DELETE IF NOT USED !!!!!!
      *  Just for a "real" table
      */
     td,th{
@@ -28,9 +27,28 @@
   </style>
 </head>
 <body>
-  <h1>Algorithme Numérique Labo 2</h1>
+  <h1>Algorithme Numérique Labo 3</h1>
   <div style="font-size:1.4em;">Equipe A2 - Paul Jeanbourquin, Marc Friedli, Florian Fasmeyer</div>
   <div id="debug">
   </div>
+  <h2>Résolution de système linéaire à n inconnue</h2>
+  <label for=matrixFile >Charger une matrice depuis un fichier : </label>
+  <input type=file id=matrixFile name=matrixFile />
+  <h3>Solutions du système linéaire</h3>
+  <table id=results >
+
+  </table>
+  <span>Temps de résolution : </span><span id=duration></span>
 </body>
+<script>
+  var matrixFile = document.getElementById("matrixFile");
+  matrixFile.addEventListener('change',function(){
+    let file = this.files[0];
+    let reader = new FileReader();
+    reader.addEventListener('load',function(){
+      alert(reader.result);
+    })
+    reader.readAsText(file,'UTF-8');
+  });
+</script>
 </html>
