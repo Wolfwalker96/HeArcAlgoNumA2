@@ -1,3 +1,9 @@
+/*
+ *  Numerical Algorithm - 3nd Labo.
+ *  Paul Jeanbourquin, Marc Friedli, Florian Fasmeyer (Team A2)
+ *  17.04.2017
+ */
+
 function generateMatrix(A,n)
 {
   var matrix = new Array(n);
