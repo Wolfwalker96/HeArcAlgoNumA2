@@ -1,4 +1,4 @@
-function generateMatix(A,n)
+function generateMatrix(A,n)
 {
   var matrix = new Array(n);
   for(let i=0;i<n;i++)
