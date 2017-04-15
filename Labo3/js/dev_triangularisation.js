@@ -8,8 +8,8 @@
 */ 
 /*
 	Triangularization function. Made to triangularize a square
-	matrix using Gauss's algorithm. Vector variable contains
-	a value for each line of the matrix for witch it is equal to.
+	matrix using Gauss's algorithm. Vector contains	a value for
+	each line of the matrix. It is a parametric function! :-)
 	INPUT:
 		matrix		vector
 		  1 2	=	  5
@@ -97,10 +97,20 @@ function triangularize (matrix, vector, size){
 			for(let j=0; j<size; j++){
 				
 				let variable = matrix[i][j]
-				if(!isDefined(variable))
+				if(!isDefined(variable) && typeof variable === 'number')
 					return false
 			}
 		}
+		
+		//vector exists?
+		if(isUndefined(vector))
+			return false
+		for(let i=0; i<size; i++){
+		
+			if(isUndefined(vector[i]) && typeof vector[i] === 'number')
+				return false
+		}
+		
 		return true
 	}
 	
@@ -145,10 +155,10 @@ function isUndefined (variable){
 }
 //Debug Function.
 function show(matrix){
-	document.write(matrix[0][0]+ "x; " +matrix[0][1]
-		+"y; "+matrix[0][2]+"z = "+vector[0].toFixed(7)+"<\/br>")
-	document.write(matrix[1][0]+ "x; " +matrix[1][1]
-		+"y; "+matrix[1][2]+"z = "+vector[1].toFixed(7)+"<\/br>")
-	document.write(matrix[2][0]+ "x; " +matrix[2][1]
-		+"y; "+matrix[2][2]+"z = "+vector[2].toFixed(7)+"<\/br><\/br>")
+	document.write(matrix[0][0].toFixed(7)+ "x; " +matrix[0][1].toFixed(7)
+		+"y; "+matrix[0][2].toFixed(7)+"z = "+vector[0].toFixed(7)+"<\/br>")
+	document.write(matrix[1][0].toFixed(7)+ "x; " +matrix[1][1].toFixed(7)
+		+"y; "+matrix[1][2].toFixed(7)+"z = "+vector[1].toFixed(7)+"<\/br>")
+	document.write(matrix[2][0].toFixed(7)+ "x; " +matrix[2][1].toFixed(7)
+		+"y; "+matrix[2][2].toFixed(7)+"z = "+vector[2].toFixed(7)+"<\/br><\/br>")
 }
