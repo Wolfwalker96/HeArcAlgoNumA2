@@ -6,7 +6,7 @@ function generateMatrix(A,n)
     matrix[i]= new Array(n);
     for(let j=0;j<n;j++)
     {
-      matrix[i][j]=A[3 * i + j];
+      matrix[i][j]=A[n * i + j];
     }
   }
   return matrix;
@@ -62,13 +62,6 @@ function gauss(matrix,vector,size)
       swapLines(matrix,i,size);
     }
 
-    /*multiplyLineByFactor(1/matrix[i][i],i,size);
-
-    for(var j = i+1; j < size; j++)
-    {
-      subLines(matrix,i,j,size);
-      matrix[i][j]=0;
-    }*/
     for (let k=i+1; k < size; k++) {
         var c = -matrix[k][i]/matrix[i][i];
         for (j=i; j < size+1; j++) {
@@ -81,7 +74,6 @@ function gauss(matrix,vector,size)
     }
 
   }
-  //console.log(matrix)
 
   B = new Array(size);
   for (let i=size-1; i > -1; i--)
@@ -92,7 +84,5 @@ function gauss(matrix,vector,size)
           matrix[k][size] -= matrix[k][i] * B[i];
       }
   }
-
-  console.log(B)
-
+  return B;
 }

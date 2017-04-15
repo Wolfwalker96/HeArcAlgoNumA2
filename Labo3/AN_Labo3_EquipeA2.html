@@ -35,13 +35,14 @@
   <label for=matrixFile >Charger une matrice depuis un fichier : </label>
   <input type=file id=matrixFile name=matrixFile />
   <h3>Solutions du système linéaire</h3>
+  <span>Temps de résolution : <span id=duration>N/A</span>ms</span>
   <table id=results >
 
   </table>
-  <span>Temps de résolution : </span><span id=duration></span>
 </body>
 <script>
   var matrixFile = document.getElementById("matrixFile");
+  var durationSpan = document.getElementById("duration");
   var A;
   var B;
   var size;
@@ -50,11 +51,24 @@
     let reader = new FileReader();
     reader.addEventListener('load',function(){
       var mat = JSON.parse(reader.result);
-      var matrix = generateMatrix(mat.A,mat.n);
+      A = generateMatrix(mat.A,mat.n);
       size=parseInt(mat.n);
       B=mat.B;
-      gauss(matrix,B,size);
-    })
+
+      var resultsArr = new Array(size);
+
+      startTime = performance.now();
+      resultsArr = gauss(A,B,size);
+      endTime = performance.now();
+
+      durationSpan.innerHTML = endTime-startTime;
+
+      results.innerHTML="</tr><th>Index</th><th>Valeurs</th></tr>";
+      resultsArr.forEach(function(result,i){
+        results.innerHTML+="<tr><td>x"+(i+1)+"</td><td>"+result+"</td></tr>";
+      });
+
+    });
     reader.readAsText(file,'UTF-8');
   });
 </script>
