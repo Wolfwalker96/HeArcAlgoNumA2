@@ -9,12 +9,11 @@ function generateMatrix(A,n)
       matrix[i][j]=A[3 * i + j];
     }
   }
-  return matrix
+  return matrix;
 }
 
 function subLines(matrix,c,one,two,size)
 {
-  alert(size)
   for(var i = 0; i < size+1; i++)
   {
     matrix[two][i] -= c*matrix[one][i];
@@ -44,7 +43,7 @@ function swapLines(matrix, indexLine, size)
   }
 }
 
-function gauss(matrix,vector,parseInt(size))
+function gauss(matrix,vector,size)
 {
 
   //Concatenate the matrix with the vector B
@@ -65,9 +64,9 @@ function gauss(matrix,vector,parseInt(size))
 
     for(var j = i+1; j < size; j++)
     {
-      //c = A21 / A11 puis A31/A11
       var c = matrix[j][i] / matrix[i][i];
       subLines(matrix,c,i,j,size);
+      matrix[i][j]=0;
     }
 
   }

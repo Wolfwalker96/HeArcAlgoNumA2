@@ -42,13 +42,18 @@
 </body>
 <script>
   var matrixFile = document.getElementById("matrixFile");
+  var A;
+  var B;
+  var size;
   matrixFile.addEventListener('change',function(){
     let file = this.files[0];
     let reader = new FileReader();
     reader.addEventListener('load',function(){
       var mat = JSON.parse(reader.result);
       var matrix = generateMatrix(mat.A,mat.n);
-      gauss(matrix,B,n)
+      size=parseInt(mat.n);
+      B=mat.B;
+      gauss(matrix,B,size);
     })
     reader.readAsText(file,'UTF-8');
   });
