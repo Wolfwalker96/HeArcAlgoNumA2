@@ -14,6 +14,9 @@
 		matrix		vector
 		  1 2	=	  5
 		  9 9	= 	  7
+		  
+	Based on "Wikipedia Élimination de Gauss Jordan" and optimised
+	a bit to avoid useless calculations with zeros and ones.
 */
 function triangularize (matrix, vector, size){
 	
@@ -74,10 +77,17 @@ function triangularize (matrix, vector, size){
 		matrix[i][j]=0
 	}
 	/*
-	Check if (array is set && the matrix is a square).
-	Processing time not calculated as it is not part 
-	of the algorithm. As such it is merely here to make
-	sure we didn't input wrong variables by mistake.
+		Check if (array is set && the matrix is a square
+		&& values are numerical). Processing time not 
+		calculated as it is not part of the algorithm. 
+		As such it is merely here to make sure we didn't 
+		input wrong variables by mistake.
+		
+		We could do with a lighter version or even integrate 
+		it within the 'for' loops of the start function.
+		
+		We did not as we expect to be evaluated on the speed
+		of the algorithm; algorithm's logic only.
 	*/
 	this.validate = function(){
 		
