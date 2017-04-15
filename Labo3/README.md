@@ -28,4 +28,4 @@ by the user.
 Conclusion
 ----------
 
-TODO
+This programs finds the solutions of a linear system.

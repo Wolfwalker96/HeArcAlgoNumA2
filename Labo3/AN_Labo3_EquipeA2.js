@@ -35,9 +35,11 @@ function swapLines(matrix, indexLine, size)
       if (matrix[i][indexLine]!=0)
       {
           //We found a line not null. We can swap.
-          var temp = matrix[indexLine];
-          matrix[indexLine] = matrix[i];
-          matrix[i] = temp;
+          for(let z=0;z<size-1;z++){
+            var temp = matrix[z][indexLine];
+            matrix[z][indexLine] = matrix[z][i];
+            matrix[z][i] = temp;
+          }
           return true; //if we don't return, the function will continue...
       }
   }
