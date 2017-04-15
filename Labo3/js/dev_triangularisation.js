@@ -62,6 +62,25 @@ function triangularize (matrix, vector, size){
 		vector[k] = vector[r]
 		vector[r] = hargy
 	}
+	this.swap = function(){
+		exchange(k, r)
+	}
+	//Operation from the course.
+	this.substractMultiplyOpti(i){
+		
+		temp = i+1
+		for(let line=temp; line<size; line++){
+			
+			let constDiv =  matrix[line][i]/matrix[i][i]
+			for(let j=temp; j<size; j++){
+				
+				matrix[line][j] -= contDiv*matrix[i][j]
+			}
+			vector[line] -= contDiv*vector[i]
+			matrix[line][i] = 0
+		}
+		
+	}
 	//Substract one line from another that is multiplied.
 	this.substractMultiply = function(i, j, r){
 		
@@ -124,8 +143,21 @@ function triangularize (matrix, vector, size){
 		return true
 	}
 	
-	//Main part of the function starts here! 
+	//Gauss algo. from the course
 	this.start = function(){
+			
+		for(let i=0; i<size; j++){
+			
+			if(matrix[i][i] == 0){
+				
+				//swap lignes
+			}
+				
+			this.substractMultiplyOpti(i)
+		}
+	}
+	//Gauss algo. from wiki, optimized! 
+	this.startSlow = function(){
 		let r = 0
 		for( let j=0; j<size; j++){
 			let k = this.findMax(j)
