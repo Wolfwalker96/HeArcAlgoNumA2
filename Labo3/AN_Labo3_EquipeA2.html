@@ -47,7 +47,8 @@
     let reader = new FileReader();
     reader.addEventListener('load',function(){
       var mat = JSON.parse(reader.result);
-      generateMatix(mat.A, mat.B, mat.n)
+      var matrix = generateMatrix(mat.A,mat.n);
+      gauss(matrix,B,n)
     })
     reader.readAsText(file,'UTF-8');
   });

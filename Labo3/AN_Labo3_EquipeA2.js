@@ -1,4 +1,4 @@
-function generateMatix(A,B,n)
+function generateMatix(A,n)
 {
   var matrix = new Array(n);
   for(let i=0;i<n;i++)
@@ -9,12 +9,13 @@ function generateMatix(A,B,n)
       matrix[i][j]=A[3 * i + j];
     }
   }
-  gauss(matrix,B,n)
+  return matrix
 }
 
 function subLines(matrix,c,one,two,size)
 {
-  for(var i = 0; i < parseInt(size)+1; i++)
+  alert(size)
+  for(var i = 0; i < size+1; i++)
   {
     matrix[two][i] -= c*matrix[one][i];
   }
@@ -43,7 +44,7 @@ function swapLines(matrix, indexLine, size)
   }
 }
 
-function gauss(matrix,vector,size)
+function gauss(matrix,vector,parseInt(size))
 {
 
   //Concatenate the matrix with the vector B
