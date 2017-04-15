@@ -12,19 +12,24 @@ function generateMatrix(A,n)
   return matrix;
 }
 
-function swapLines(matrix, indexLine, size)
+function swapCols(matrix, indexCol, size)
 {
-  for (let i = indexLine+1; i < size-1 ; i++)
+  for (let i = indexCol+1; i < size-1 ; i++)
   {
-      if (matrix[i][indexLine]!=0)
+      if (matrix[i][indexCol]!=0)
       {
           //We found a line not null. We can swap.
-          for(let z=0;z<size-1;z++){
-            var temp = matrix[z][indexLine];
-            matrix[z][indexLine] = matrix[z][i];
+          for(let z=0;z<size;z++)
+          {
+            var temp = matrix[z][indexCol];
+            matrix[z][indexCol] = matrix[z][i];
             matrix[z][i] = temp;
           }
           return true; //if we don't return, the function will continue...
+      }
+      else
+      {
+          return false;
       }
   }
 }
@@ -53,7 +58,10 @@ function gauss(matrix,vector,size)
     //If the value is 0, we need to swap with another line.
     if(matrix[i][i]==0)
     {
-      swapLines(matrix,i,size);
+      if(!swapCols(matrix,i,size))
+      {
+        return false;
+      }
     }
 
     for (let k=i+1; k < size; k++)
