@@ -10,7 +10,7 @@ Objectives
 The objectives are to make an JavaScript programs which solve a linear system using the Gauss-Jordan
 elimination Algorithm to triangulate a matrix.
 
-The matrix must be contained in a JSON file.
+The matrix must be contained in JSON files.
 
 Method
 ------
