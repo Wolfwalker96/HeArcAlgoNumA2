@@ -84,11 +84,12 @@ function gauss(matrix,vector,size)
   B = new Array(size);
   for (let i=size-1; i > -1; i--)
   {
-      B[i] = matrix[i][size]/matrix[i][i];
+      var temp = matrix[i][size];
       for (let k=i-1; k > -1; k--)
       {
-          matrix[k][size] -= matrix[k][i] * B[i];
+          temp -= matrix[k][i] * B[k];
       }
+      B[i] = temp/matrix[i][i];
   }
 
   console.log(B)
