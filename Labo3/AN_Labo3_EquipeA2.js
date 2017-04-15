@@ -12,22 +12,6 @@ function generateMatrix(A,n)
   return matrix;
 }
 
-function subLines(matrix,one,two,size)
-{
-  for(var i = 0; i < size+1; i++)
-  {
-    matrix[two][i] -= matrix[two][one] / matrix[one][one]*matrix[one][i];
-  }
-}
-
-function multiplyLineByFactor(matrix,c,line,size)
-{
-  for(let i = 0; i < size+1; i++)
-  {
-    matrix[line][i] *= c;
-  }
-}
-
 function swapLines(matrix, indexLine, size)
 {
   for (let i = indexLine+1; i < size-1 ; i++)
@@ -43,6 +27,16 @@ function swapLines(matrix, indexLine, size)
           return true; //if we don't return, the function will continue...
       }
   }
+}
+
+function substractMultiply(i, k, matrix,size)
+{
+  var c = matrix[k][i]/matrix[i][i];
+  for (j=i+1; j < size+1; j++)
+  {
+      matrix[k][j] -= c * matrix[i][j];
+  }
+  matrix[k][j]==0;
 }
 
 function gauss(matrix,vector,size)
@@ -62,27 +56,21 @@ function gauss(matrix,vector,size)
       swapLines(matrix,i,size);
     }
 
-    for (let k=i+1; k < size; k++) {
-        var c = -matrix[k][i]/matrix[i][i];
-        for (j=i; j < size+1; j++) {
-            if (i===j) {
-                matrix[k][j] = 0;
-            } else {
-                matrix[k][j] += c * matrix[i][j];
-            }
-        }
+    for (let k=i+1; k < size; k++)
+    {
+        substractMultiply(i,k,matrix,size);
     }
 
   }
 
-  B = new Array(size);
+  X = new Array(size);
   for (let i=size-1; i > -1; i--)
   {
-      B[i] = matrix[i][size]/matrix[i][i];
+      X[i] = matrix[i][size]/matrix[i][i];
       for (let k=i-1; k > -1; k--)
       {
-          matrix[k][size] -= matrix[k][i] * B[i];
+          matrix[k][size] -= matrix[k][i] * X[i];
       }
   }
-  return B;
+  return X;
 }
