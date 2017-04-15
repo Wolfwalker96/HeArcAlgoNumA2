@@ -25,6 +25,15 @@ by the user.
 
 ### Substitution method
 
+Files
+-----
+
+* **AN_Labo3_EquipeA2.html** Programs views
+* **AN_Labo3_EquipeA2.js**  Script human readable
+* **AN_Labo3_EquipeA2.min.js** Script minified
+* **img/Loading_A2_Labo3.gif** Image for animation \
+(from http://www.downgraf.com/inspiration/25-beautiful-loading-bar-design-examples-gif-animated/)
+
 Conclusion
 ----------
 
