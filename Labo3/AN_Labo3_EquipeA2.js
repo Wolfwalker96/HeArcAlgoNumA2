@@ -52,7 +52,6 @@ function substractMultiply(i, k, matrix,size)
   {
       matrix[k][j] -= c * matrix[i][j];
   }
-  matrix[k][j]==0;
 }
 
 function gauss(matrix,vector,size)
@@ -80,6 +79,7 @@ function gauss(matrix,vector,size)
     for (let k=i+1; k < size; k++)
     {
         substractMultiply(i,k,matrix,size);
+        matrix[k][j]==0;
     }
   }
 
