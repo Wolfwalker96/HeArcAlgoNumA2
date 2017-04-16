@@ -2,7 +2,7 @@ Numerical Algorithm - 3nd Laboratory
 ====================================
 
 * Authors : (Team A2) Paul Jeanbourquin, Marc Friedli, Florian Fasmeyer
-* School : HE-Arc - Ingénierie (Neuchâtel)
+* School : HE-Arc - Ingénierie (Neuchâtel, Switzerland)
 
 Objectives
 ----------
@@ -23,7 +23,20 @@ by the user.
 
 ### Gauss-Jordan elimination
 
+To Do
+
 ### Substitution method
+
+As the Gauss elimination return a matrix with the lines upside down, we use an inversed substitution method
+(We start by the matrix's last line and finish by the first).
+
+User's manual
+-------------
+
+To launch the linear system resolver, select a file. The resolution of the linear system starts automatically.
+After the resolution you can start with another file.
+
+**For Firefox users** : If you select the same file, the programs will resolve the same matrix.
 
 Files
 -----
@@ -37,4 +50,9 @@ Files
 Conclusion
 ----------
 
-This programs finds the solutions of a linear system.
+This programs finds the solutions of a linear system. If there is not a solution
+(matrix empty or false linear system) the program alert the user. The programs loads
+matrix from JSON files.
+
+After some tests we show that our programs is fast (on Firefox we take less than
+30ms for a 300x300 matrix).
