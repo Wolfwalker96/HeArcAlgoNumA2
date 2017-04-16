@@ -41,6 +41,9 @@
   </div>
   <span>Temps de résolution : <span id=duration>N/A</span>ms</span>
   <table id=results ></table>
+  <div id=warning style="color:orange;">
+
+  </div>
 </body>
 <script>
   var matrixFile = document.getElementById("matrixFile");
@@ -67,12 +70,18 @@
       resultsArr = gauss(A,B,size);
       endTime = performance.now();
 
+      results.innerHTML = "";
+      warning.innerHTML="";
       durationSpan.innerHTML = (endTime-startTime).toFixed(3);
-
-      results.innerHTML="</tr><th>Index</th><th>Valeurs</th></tr>";
-      resultsArr.forEach(function(result,i){
-        results.innerHTML+="<tr><td>x<sub>"+(i+1)+"</sub></td><td>"+result.toFixed(7)+"</td></tr>";
-      });
+      if(resultsArr!=false){
+        results.innerHTML="</tr><th>Index</th><th>Valeurs</th></tr>";
+        resultsArr.forEach(function(result,i){
+          results.innerHTML+="<tr><td>x<sub>"+(i+1)+"</sub></td><td>"+result.toFixed(7)+"</td></tr>";
+        });
+      }
+      else{
+        warning.innerHTML="Matrice incorrecte.";
+      }
 
       animation.style.display="none";
     });
