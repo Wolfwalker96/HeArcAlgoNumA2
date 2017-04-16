@@ -75,16 +75,15 @@ function gauss(matrix,vector,size)
       }
     }
 
-    //Paul's second first name is Ami.
     for (let k=i+1; k < size; k++)
     {
         substractMultiply(i,k,matrix,size);
     }
-
   }
 
   //Return a one dimension matrix as answer.
   X = new Array(size);
+  //Sub method.
   for (let i=size-1; i > -1; i--)
   {
       X[i] = matrix[i][size]/matrix[i][i];
