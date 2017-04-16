@@ -3,6 +3,7 @@
 
 * Authors : (Team A2) Paul Jeanbourquin, Marc Friedli, Florian Fasmeyer
 * School : HE-Arc - Ingénierie (Neuchâtel, Switzerland)
+* [Readable README](https://github.com/Wolfwalker96/HeArcAlgoNumA2/blob/master/Labo3/README.md)
 
 Objectives
 ----------
