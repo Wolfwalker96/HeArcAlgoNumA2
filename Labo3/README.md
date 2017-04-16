@@ -8,7 +8,7 @@ Objectives
 ----------
 
 The objective is to make a JavaScript programs which solves a linear system using the Gauss
-elimination Algorithm to triangulate a matrix (upper triangular).
+elimination algorithm to triangulate a matrix (upper triangular).
 
 The matrix must be contained in a JSON file.
 
@@ -23,8 +23,8 @@ by the user.
 
 ### Gauss elimination
 
-To optimize the execution time we decided to put the B vector in the matrix A, wich had a significant impact on
-the speed of the algorithm. We also made sure to properly factorize the equations in order to avoid any redundant 
+To optimize the execution time we decided to put the B vector in the matrix A, which had a significant impact on
+the speed of the algorithm. We also made sure to properly factorize the equations in order to avoid any redundant
 divisions or multiplications.
 
 
@@ -39,8 +39,8 @@ User manual
 To launch the linear system resolver, select a file. The resolution of the linear system starts automatically.
 After the resolution you can start with another file.
 
-**For Firefox users** : if you already selected a fail, you can restart the procedure by selecting the same file
-			(useful if you want to test the processing time)
+**For Firefox users** : if you already selected a file, you can restart the procedure by selecting
+the same file(useful if you want to test the processing time)
 
 Files
 -----
@@ -55,14 +55,10 @@ Conclusion
 ----------
 
 This program successfully found the solution of a linear system. If there is no solution
-(matrix empty or false linear system) the program alerts the user. 
+(matrix empty or false linear system) the program alerts the user.
 
 The program loads the matrix from a JSON file (deal with it).
 
-WARNING: The following information makes no sense! We need eighter the computer specs or a comparaison with another algorithm
-Maybe we should compare with the Gauss-Jordan I made to have a scale. But this info is useless here!
-
-"After testing we can affirm that this algorithm takes approximately 30ms to solve
-a 300x300 matrix on the computers we were using"  
-(, compared to XXms for an optimized Gauss-Jordan Algorithm of our own on the same computer)
-(given a xxGhz, N cores [processor name] processor and XXGb of ram)
+After testing we can affirm that this algorithm takes approximately 30ms to solve
+a 300x300 matrix on the computers we were using
+(an Lenovo T450s on Windows 8.1 with Firefox 48.0.2) .
