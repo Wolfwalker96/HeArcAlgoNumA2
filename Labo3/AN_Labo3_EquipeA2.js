@@ -4,6 +4,7 @@
  *  17.04.2017
  */
 
+//Transform the one dimension array from the JSON file into a n dimension array
 function generateMatrix(A,n)
 {
   var matrix = new Array(n);
@@ -18,30 +19,36 @@ function generateMatrix(A,n)
   return matrix;
 }
 
+//Search in the same column if a value isn't null
 function swapCols(matrix, indexCol, size)
 {
   for (let i = indexCol+1; i < size-1 ; i++)
   {
       if (matrix[i][indexCol]!=0)
       {
-          //We found a line not null. We can swap.
+          //We found a value not null. We can swap.
           for(let z=0;z<size;z++)
           {
             var temp = matrix[z][indexCol];
             matrix[z][indexCol] = matrix[z][i];
             matrix[z][i] = temp;
           }
-          return true; //if we don't return, the function will continue...
+          return true;
       }
       else
       {
+          //We miss some argument. So we can't resolve the lineare fonction
           return false;
       }
   }
 }
 
+//Substract one line from another that is multiplied.
 function substractMultiply(i, k, matrix,size)
 {
+  /*
+    j=i+1 shortcut: matrix[k][j] is always 0
+  */
   var c = matrix[k][i]/matrix[i][i];
   for (j=i+1; j < size+1; j++)
   {
@@ -53,7 +60,11 @@ function substractMultiply(i, k, matrix,size)
 function gauss(matrix,vector,size)
 {
 
-  //Concatenate the matrix with the vector B
+  /*
+    Concatenate the matrix with the vector B
+    We do this because we save some instructions
+    if we have to change the matrix and the vector
+  */
   for (let i=0; i < size; i++)
   {
       matrix[i].push(vector[i]);
@@ -70,6 +81,7 @@ function gauss(matrix,vector,size)
       }
     }
 
+    /*Adapt the values*/
     for (let k=i+1; k < size; k++)
     {
         substractMultiply(i,k,matrix,size);
@@ -77,6 +89,7 @@ function gauss(matrix,vector,size)
 
   }
 
+  /*We construct the answer vector*/
   X = new Array(size);
   for (let i=size-1; i > -1; i--)
   {
