@@ -1,10 +1,10 @@
 /*
  *  Numerical Algorithm - 3nd Labo.
- *  Paul Jeanbourquin, Marc Friedli, Florian Fasmeyer (Team A2)
+ *  Paul Jeanbourquin, Marc Friedli, Florian Fasmeyer (Team A2).
  *  17.04.2017
  */
 
-//Transform the one dimension array from the JSON file into a n dimension array
+//Transform the one dimension array from the JSON file into a 'n' dimension array.
 function generateMatrix(A,n)
 {
   var matrix = new Array(n);
@@ -19,14 +19,14 @@ function generateMatrix(A,n)
   return matrix;
 }
 
-//Search a row not null then swap with the current row
+//Search a row not null then swap with the current row, if nothing found return false.
 function swapRows(matrix, indexRow, size)
 {
   for (let i = indexRow+1; i < size-1 ; i++)
   {
       if (matrix[i][indexRow]!=0)
       {
-          //We found a value not null. We can swap.
+          //Swap.
           var temp = matrix[indexRow];
           matrix[indexRow] = matrix[i];
           matrix[i] = temp;
@@ -34,7 +34,7 @@ function swapRows(matrix, indexRow, size)
       }
       else
       {
-          //We miss some argument. So we can't resolve the lineare fonction
+          //Miss some argument. Linear function can not be solved.
           return false;
       }
   }
@@ -43,9 +43,8 @@ function swapRows(matrix, indexRow, size)
 //Substract one line from another that is multiplied.
 function substractMultiply(i, k, matrix,size)
 {
-  /*
-    j=i+1 shortcut: matrix[k][j] is always 0
-  */
+
+  //j=i+1 shortcut: matrix[k][j] is always 0.
   let c = matrix[k][i]/matrix[i][i];
   for (j=i+1; j < size+1; j++)
   {
@@ -57,9 +56,8 @@ function substractMultiply(i, k, matrix,size)
 function gauss(matrix,vector,size)
 {
   /*
-    Concatenate the matrix with the vector B
-    We do this because we save some instructions
-    if we have to change the matrix and the vector
+    Concatenate the matrix with the vector B.
+    Saves some instructions, speed up the process.
   */
   for (let i=0; i < size; i++)
   {
@@ -68,7 +66,7 @@ function gauss(matrix,vector,size)
 
   for(let i=0;i<size;i++)
   {
-    //If the value is 0, we need to swap with another line.
+    //If the value is 0, swap with another line wich does NOT have zero for the same column.
     if(matrix[i][i]==0)
     {
       if(!swapRows(matrix,i,size))
@@ -77,7 +75,7 @@ function gauss(matrix,vector,size)
       }
     }
 
-    /*Adapt the values*/
+    //Paul's second first name is Ami.
     for (let k=i+1; k < size; k++)
     {
         substractMultiply(i,k,matrix,size);
@@ -85,7 +83,7 @@ function gauss(matrix,vector,size)
 
   }
 
-  /*We construct the answer vector*/
+  //Return a one dimension matrix as answer.
   X = new Array(size);
   for (let i=size-1; i > -1; i--)
   {
