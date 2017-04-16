@@ -6,11 +6,11 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <script src="AN_Labo3_EquipeA2.js" ></script>
+  <script src="AN_Labo3_EquipeA2.min.js" ></script>
   <title>Algorithme Numérique Labo 3 - Equipe A2</title>
   <style>
     /*
-     *  Just for a "real" table
+     *  Just for a "real" table.
      */
     td,th{
       border:solid black 1px;
@@ -31,7 +31,7 @@
   <div style="font-size:1.4em;">Equipe A2 - Paul Jeanbourquin, Marc Friedli, Florian Fasmeyer</div>
   <div id="debug">
   </div>
-  <h2>Résolution de système linéaire à n inconnue</h2>
+  <h2>Résolution de système linéaire à n inconnues</h2>
   <label for=matrixFile >Charger une matrice depuis un fichier : </label>
   <input type=file id=matrixFile name=matrixFile />
   <h3>Solutions du système linéaire</h3>
@@ -41,7 +41,7 @@
   </div>
   <span>Temps de résolution : <span id=duration>N/A</span>ms</span>
   <table id=results ></table>
-  <div id=warning style="color:orange;">
+  <div id=warning style="color:red;">
 
   </div>
 </body>
@@ -71,7 +71,7 @@
       endTime = performance.now();
 
       results.innerHTML = "";
-      warning.innerHTML="";
+      warning.innerHTML = "";
       durationSpan.innerHTML = (endTime-startTime).toFixed(3);
       if(resultsArr!=false){
         results.innerHTML="</tr><th>Index</th><th>Valeurs</th></tr>";
