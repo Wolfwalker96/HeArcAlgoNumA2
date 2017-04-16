@@ -49,7 +49,7 @@ function substractMultiply(i, k, matrix,size)
   /*
     j=i+1 shortcut: matrix[k][j] is always 0
   */
-  var c = matrix[k][i]/matrix[i][i];
+  let c = matrix[k][i]/matrix[i][i];
   for (j=i+1; j < size+1; j++)
   {
       matrix[k][j] -= c * matrix[i][j];
@@ -59,7 +59,6 @@ function substractMultiply(i, k, matrix,size)
 
 function gauss(matrix,vector,size)
 {
-
   /*
     Concatenate the matrix with the vector B
     We do this because we save some instructions
