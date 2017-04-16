@@ -19,20 +19,17 @@ function generateMatrix(A,n)
   return matrix;
 }
 
-//Search in the same column if a value isn't null
-function swapCols(matrix, indexCol, size)
+//Search a row not null then swap with the current row
+function swapRows(matrix, indexRow, size)
 {
-  for (let i = indexCol+1; i < size-1 ; i++)
+  for (let i = indexRow+1; i < size-1 ; i++)
   {
-      if (matrix[i][indexCol]!=0)
+      if (matrix[i][indexRow]!=0)
       {
           //We found a value not null. We can swap.
-          for(let z=0;z<size;z++)
-          {
-            var temp = matrix[z][indexCol];
-            matrix[z][indexCol] = matrix[z][i];
-            matrix[z][i] = temp;
-          }
+          var temp = matrix[indexRow];
+          matrix[indexRow] = matrix[i];
+          matrix[i] = temp;
           return true;
       }
       else
@@ -74,7 +71,7 @@ function gauss(matrix,vector,size)
     //If the value is 0, we need to swap with another line.
     if(matrix[i][i]==0)
     {
-      if(!swapCols(matrix,i,size))
+      if(!swapRows(matrix,i,size))
       {
         return false;
       }
