@@ -67,11 +67,11 @@
       resultsArr = gauss(A,B,size);
       endTime = performance.now();
 
-      durationSpan.innerHTML = endTime-startTime;
+      durationSpan.innerHTML = (endTime-startTime).toFixed(3);
 
       results.innerHTML="</tr><th>Index</th><th>Valeurs</th></tr>";
       resultsArr.forEach(function(result,i){
-        results.innerHTML+="<tr><td>x"+(i+1)+"</td><td>"+result+"</td></tr>";
+        results.innerHTML+="<tr><td>x"+(i+1)+"</td><td>"+result.toFixed(7)+"</td></tr>";
       });
 
       animation.style.display="none";
