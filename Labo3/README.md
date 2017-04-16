@@ -7,7 +7,7 @@ Numerical Algorithm - 3nd Laboratory
 Objectives
 ----------
 
-The objectives are to make an JavaScript programs which solve a linear system using the Gauss-Jordan
+The objectives are to make an JavaScript programs which solve a linear system using the Gauss
 elimination Algorithm to triangulate a matrix.
 
 The matrix must be contained in JSON files.
@@ -21,9 +21,9 @@ Because the using of JavaScript and HTML technology we can't make a direct acces
 So we decide to work with the new (HTML5) JS File API. This API give the access to the files selected
 by the user.
 
-### Gauss-Jordan elimination
+### Gauss elimination
 
-To Do
+To optimize the execution time we decide to put the B vector in the matrix A. We have noticed 
 
 ### Substitution method
 
