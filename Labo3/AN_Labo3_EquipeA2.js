@@ -2,6 +2,8 @@
  *  Numerical Algorithm - 3nd Labo.
  *  Paul Jeanbourquin, Marc Friedli, Florian Fasmeyer (Team A2).
  *  17.04.2017
+ *
+ * inspired by https://github.com/itsravenous/gaussian-elimination.
  */
 
 //Transform the one dimension array from the JSON file into a 'n' dimension array.
