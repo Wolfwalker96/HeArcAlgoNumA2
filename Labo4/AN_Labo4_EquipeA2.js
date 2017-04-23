@@ -27,17 +27,18 @@ function factorial(n){
  *    x : Radius value in radian.
  *    nOrder : Half of the order of Taylor's Series (5 by default).
  */
-function cos(x,nOrder=5){
-  x=x%(2*Math.PI);
+function cos(x,nOrder=10){
+  let z = x % (2*Math.PI);
+  // console.log(z);
   let ret=0;
   for(let i=0;i<=nOrder;i++){
-    ret+=(Math.pow(-1,i)*Math.pow(x,2*i))/factorial(2*i);
+    ret+=(Math.pow(-1,i)*Math.pow(z,2*i))/factorial(2*i);
   }
   return ret;
 }
 
 //  hMax is the smaller value of h (using in derivate).
-var hMax=0.001;
+var hMax=0.1;
 
 /*
  *  derivate(func,nOrder=1)
@@ -47,12 +48,17 @@ var hMax=0.001;
  */
 function derivate(func,nOrder=1){
   if(nOrder==1){
-    funcDerivated = function(x){
-      return (8*((func(x+(hMax/2))-func(x-(hMax/2))))-func(x+hMax)+func(x-hMax))/(6*hMax);
+    let funcDerivated = function(x){
+      console.log(func(x+(hMax/2)));
+      console.log(func(x-(hMax/2)));
+      console.log(func(x+hMax));
+      console.log(func(x-hMax));
+      return ( (8 * (func(x+(hMax/2)) - func(x-(hMax/2)) )) - func(x+hMax) + func(x-hMax) ) / (6*hMax);
     }
     return funcDerivated;
   }
   else{
-    return derivate(derivate(func,nOrder-1))
+    let funcDerivated = derivate(derivate(func,nOrder-1));
+    return funcDerivated;
   }
 }
