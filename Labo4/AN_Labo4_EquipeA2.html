@@ -28,11 +28,74 @@
     }
   </style>
 </head>
-<body>
+<body id=body >
   <h1>Algorithme Numérique Labo 4</h1>
   <div style="font-size:1.4em;">Equipe A2 - Paul Jeanbourquin, Marc Friedli, Florian Fasmeyer</div>
-  <h2></h2>
+  <h2>Cosinus</h2>
+  <p>
+    Faire pour pouvoir calculer cos de x.
+  </p>
+  <h2>Graphes</h2>
+  <label for=sampleInput >Echantillonage : </label>
+  <input type=number id=sampleInput name=sampleInput min="1" max="100" value=10 />
+  <h3>Cosinus</h3>
+  <div id=cosPlot>
+
+  </div>
+  <h3>Derivée de Cosinus</h3>
+  <div id=cosDPlot>
+
+  </div>
+  <h3>Seconde de Cosinus</h3>
+  <div id=cosDDPlot>
+
+  </div>
+  <h2>Problemes du bateau</h2>
 </body>
 <script>
+  function PlotCosAndDerivate(){
+    let sample = (sampleInput.value>=sampleInput.min && sampleInput.value<=sampleInput.max)?sampleInput.value:10;
+    //  Plot cos
+    functionPlot({
+      target: '#cosPlot',
+      data: [{
+        fn: "cos(x)"
+      },{
+        points: evaluateFunction(cos,-2*Math.PI,2*Math.PI,sample),
+        fnType: 'points',
+        graphType: 'polyline'
+      }]
+    });
+
+    //  Plot cos'
+    functionPlot({
+      target: '#cosDPlot',
+      data: [{
+        fn: "-sin(x)"
+      },{
+        points: evaluateFunction(derivate(cos),-2*Math.PI,2*Math.PI,sample),
+        fnType: 'points',
+        graphType: 'polyline'
+      }]
+    });
+
+    //  Plot cos''
+    functionPlot({
+      target: '#cosDDPlot',
+      data: [{
+        fn: "-cos(x)"
+      },{
+        points: evaluateFunction(derivate(cos,2),-2*Math.PI,2*Math.PI,sample),
+        fnType: 'points',
+        graphType: 'polyline'
+      }]
+    });
+  }
+  body.onload=function(e){
+    PlotCosAndDerivate();
+  };
+  sampleInput.onchange=function(e){
+    PlotCosAndDerivate();
+  }
 </script>
 </html>

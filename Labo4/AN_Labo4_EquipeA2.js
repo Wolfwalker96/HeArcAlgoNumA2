@@ -25,11 +25,10 @@ function factorial(n){
  *  cos(x,nOrder=5)
  *    Returns cosinus(x).
  *    x : Radius value in radian.
- *    nOrder : Half of the order of Taylor's Series (5 by default).
+ *    nOrder : Half of the order of Taylor's Series (20 by default).
  */
-function cos(x,nOrder=10){
+function cos(x,nOrder=20){
   let z = x % (2*Math.PI);
-  // console.log(z);
   let ret=0;
   for(let i=0;i<=nOrder;i++){
     ret+=(Math.pow(-1,i)*Math.pow(z,2*i))/factorial(2*i);
@@ -38,7 +37,7 @@ function cos(x,nOrder=10){
 }
 
 //  hMax is the smaller value of h (using in derivate).
-var hMax=0.1;
+var hMax=0.00001;
 
 /*
  *  derivate(func,nOrder=1)
@@ -49,10 +48,6 @@ var hMax=0.1;
 function derivate(func,nOrder=1){
   if(nOrder==1){
     let funcDerivated = function(x){
-      console.log(func(x+(hMax/2)));
-      console.log(func(x-(hMax/2)));
-      console.log(func(x+hMax));
-      console.log(func(x-hMax));
       return ( (8 * (func(x+(hMax/2)) - func(x-(hMax/2)) )) - func(x+hMax) + func(x-hMax) ) / (6*hMax);
     }
     return funcDerivated;
@@ -61,4 +56,26 @@ function derivate(func,nOrder=1){
     let funcDerivated = derivate(derivate(func,nOrder-1));
     return funcDerivated;
   }
+}
+
+/*
+ *  SPECIAL FUNCTIONS.
+ */
+
+/*
+ *  evaluateFunction(func,xMin,xMax,sample=10)
+ *    Returns the values of the function in the interval xMin to xMax.
+ *    func : function to evaluate.
+ *    xMin : Minimum x value of the interval.
+ *    xMax : Maximum x value of the interval.
+ *    sample : Number of sample in 1 (by default 10).
+ */
+function evaluateFunction(func,xMin,xMax,sample=10){
+  let range = 1 / sample;
+  let points = new Array();
+  for(let i=xMin;i<=xMax;i+=range){
+    let yValue = func(i);
+    points.push([i,yValue]);
+  }
+  return points;
 }
