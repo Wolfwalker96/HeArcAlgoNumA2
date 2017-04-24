@@ -33,7 +33,15 @@
   <div style="font-size:1.4em;">Equipe A2 - Paul Jeanbourquin, Marc Friedli, Florian Fasmeyer</div>
   <h2>Cosinus</h2>
   <p>
-    Faire pour pouvoir calculer cos de x.
+    L'unité de la fonction cos sont des radians.
+  </p>
+  <p>
+    cos(kpi)
+  </p>
+  <h3>Calculer pour des valeurs de k</h3>
+  <label for=cosInput>Entrer un valeur de k</label>
+  <input type=text value=0 id=cosInput name=cosInput/>
+  <p id=cosAnswer>
   </p>
   <h2>Graphes</h2>
   <label for=sampleInput >Echantillonage : </label>
@@ -91,11 +99,24 @@
       }]
     });
   }
+
+  function calculateCosK(){
+    let k = cosInput.value;
+    if(!isNaN(k)){
+      let answer = cos(k*Math.PI);
+      cosAnswer.innerHTML = "cos("+k+"pi)="+answer.toFixed(5)+"";
+    }
+  }
+
   body.onload=function(e){
     PlotCosAndDerivate();
+    calculateCosK();
   };
   sampleInput.onchange=function(e){
     PlotCosAndDerivate();
+  }
+  cosInput.oninput=function(e){
+    calculateCosK();
   }
 </script>
 </html>
