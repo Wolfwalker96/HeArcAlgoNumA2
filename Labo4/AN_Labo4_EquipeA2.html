@@ -8,6 +8,12 @@
   <meta charset="UTF-8">
   <script src="js/d3.v3.min.js"></script>
   <script src="js/function-plot.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+  });
+  </script>
+  <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
   <script src="AN_Labo4_EquipeA2.js" ></script>
   <title>Algorithme Numérique Labo 4 - Equipe A2</title>
   <style>
@@ -59,6 +65,30 @@
 
   </div>
   <h2>Problemes du bateau</h2>
+  <p>
+    $V_{Millieu} = 2 \frac{\textrm{m}}{\textrm{s}} \Rightarrow D'_{Millieu}(t_{Millieu})=2 \Rightarrow D_{Millieu}(t_{Millieu})=2t_{Millieu}$
+  </p>
+  <p>
+    $\textrm{Donc, } t_{Millieu}=\frac{\color{green}{D_{Millieu}}}{2}$
+  </p>
+  <p>
+    $V_{Bord} = 4 \frac{\textrm{m}}{\textrm{s}} \Rightarrow D'_{Bord}(t_{Bord})=4 \Rightarrow D_{Bord}(t_{Bord})=4t_{Bord}$
+  </p>
+  <p>
+    $\textrm{Donc, } t_{Bord}=\frac{\color{blue}{D_{Bord}}}{4}$
+  </p>
+  <p>
+    $T_{Total}=\color{green}{t_{Millieu}}+\color{blue}{t_{Bord}}$
+  </p>
+  <p>
+    $\textrm{Le but est de trouvé la fonction } T_{Total}(\alpha) \textrm{ qui pour un angle }\alpha \textrm{ nous donne le temps total.}$
+  </p>
+  <p>
+    $\textrm{Il nous faut donc trouvé une fonction } \color{blue}{D_{Bord}(\alpha)} \textrm{ et } \color{green}{D_{Millieu}(\alpha)} \textrm{ qui pour }\alpha\textrm{ retourne la distance parcourus.}$
+  </p>
+  <div id=boatTimePlot>
+
+  </div>
 </body>
 <script>
   function PlotCosAndDerivate(){
@@ -67,8 +97,6 @@
     functionPlot({
       target: '#cosPlot',
       data: [{
-        fn: "cos(x)"
-      },{
         points: evaluateFunction(cos,-2*Math.PI,2*Math.PI,sample),
         fnType: 'points',
         graphType: 'polyline'
@@ -79,8 +107,6 @@
     functionPlot({
       target: '#cosDPlot',
       data: [{
-        fn: "-sin(x)"
-      },{
         points: evaluateFunction(derivate(cos),-2*Math.PI,2*Math.PI,sample),
         fnType: 'points',
         graphType: 'polyline'
@@ -91,8 +117,6 @@
     functionPlot({
       target: '#cosDDPlot',
       data: [{
-        fn: "-cos(x)"
-      },{
         points: evaluateFunction(derivate(cos,2),-2*Math.PI,2*Math.PI,sample),
         fnType: 'points',
         graphType: 'polyline'
@@ -108,9 +132,31 @@
     }
   }
 
+  function boatCalculate(){
+    let Ttot = function(a){
+      return absolute((Math.PI + (2*a))/4)+ absolute(cos(a))
+    }
+
+    functionPlot({
+      target: '#boatTimePlot',
+      xAxis: {
+        domain: [0,Math.PI]
+      },
+      yAxis: {
+        domain:[1.4,3.4]
+      },
+      data: [{
+        points: evaluateFunction(Ttot,0*Math.PI,Math.PI,100),
+        fnType: 'points',
+        graphType: 'polyline'
+      }]
+    });
+  }
+
   body.onload=function(e){
     PlotCosAndDerivate();
     calculateCosK();
+    boatCalculate();
   };
   sampleInput.onchange=function(e){
     PlotCosAndDerivate();

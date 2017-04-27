@@ -21,6 +21,10 @@ function factorial(n){
   return ret;
 }
 
+function absolute(x){
+  return (x>=0) ? x : x*-1;
+}
+
 /*
  *  cos(x,nOrder=5)
  *    Returns cosinus(x).
