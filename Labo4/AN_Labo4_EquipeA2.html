@@ -86,6 +86,18 @@
   <p>
     $\textrm{Il nous faut donc trouvé une fonction } \color{blue}{D_{Bord}(\alpha)} \textrm{ et } \color{green}{D_{Millieu}(\alpha)} \textrm{ qui pour }\alpha\textrm{ retourne la distance parcourus.}$
   </p>
+  <p>
+    $\color{blue}{D_{Bord}(\alpha)} = 2\alpha r$
+  </p>
+  <p>
+    $\color{green}{D_{Millieu}(\alpha)} = 2r\cos{\alpha}$
+  </p>
+  <p>
+    $T_{Total}(\alpha)=\frac{2\alpha r}{4}+\frac{2r\cos{\alpha}}{4}\textrm{ Infos: r peut être mis en évidence. Il joue le rôle d'un coéfficient d'agrandissement. Il peut donc être ignoré (r=1).}$
+  </p>
+  <p>
+    $\textrm{Ce qui donne : }T_{Total}(\alpha)=\frac{2\alpha}{4}+\frac{2\cos{\alpha}}{2}=\frac{1}{2}\alpha+\cos{\alpha}$
+  </p>
   <div id=boatTimePlot>
 
   </div>
@@ -134,22 +146,23 @@
 
   function boatCalculate(){
     let Ttot = function(a){
-      return absolute((Math.PI + (2*a))/4)+ absolute(cos(a))
+      return ((2*a)/4) + cos(a);
     }
 
     functionPlot({
       target: '#boatTimePlot',
       xAxis: {
-        domain: [0,Math.PI]
+        domain: [0,Math.PI/2]
       },
       yAxis: {
-        domain:[1.4,3.4]
+        domain: [0.75,1.2]
       },
       data: [{
-        points: evaluateFunction(Ttot,0*Math.PI,Math.PI,100),
+        points: evaluateFunction(Ttot,0*Math.PI,Math.PI/2,100),
         fnType: 'points',
         graphType: 'polyline'
-      }]
+      }
+    ]
     });
   }
 
