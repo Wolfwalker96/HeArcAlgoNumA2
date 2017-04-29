@@ -64,7 +64,7 @@
   <div id=cosDDPlot>
 
   </div>
-  <h2>Problemes du bateau</h2>
+  <h2>Problème du bateau</h2>
   <p>
     $V_{Millieu} = 2 \frac{\textrm{m}}{\textrm{s}} \Rightarrow D'_{Millieu}(t_{Millieu})=2 \Rightarrow D_{Millieu}(t_{Millieu})=2t_{Millieu}$
   </p>
@@ -98,9 +98,24 @@
   <p>
     $\textrm{Ce qui donne : }T_{Total}(\alpha)=\frac{2\alpha}{4}+\frac{2\cos{\alpha}}{2}=\frac{1}{2}\alpha+\cos{\alpha}$
   </p>
+  <p>
+    $\textrm{Voici le graphe de la fonction } T_{total}(\alpha) \textrm{ sur l'interval }0\textrm{, } \frac{\pi}{2}$
+  </p>
   <div id=boatTimePlot>
 
   </div>
+  <p>
+    $\textrm{Recherche des extremums dans cette interval : }T'_{Total}(\alpha)=0 \Rightarrow \alpha=\frac{\pi}{6} \textrm{ est le seul extremum de la fonction dans l'interval.}$
+  </p>
+  <p>
+    $\textrm{Mais, comme nous le voyons sur le graphe, il ne peut s'agir d'un minimum local. Sur le graphe, nous voyons que le minimum local sur l'interval 0 à }\frac{\pi}{2}\textrm{ est }\frac{\pi}{2}\textrm{.}$
+  </p>
+  <p>
+    $\frac{\pi}{2}\textrm{ est donc la valeur de }\alpha\textrm{ pour laquelle }T_{Total}\textrm{ sera le plus petit.}$
+  </p>
+  <p>
+    $\textrm{En conclusion, il est plus rapide de ne passer que par le bord du cercle et ceux pour tous rayons possible.}$
+  </p>
 </body>
 <script>
   function PlotCosAndDerivate(){
@@ -112,7 +127,10 @@
         points: evaluateFunction(cos,-2*Math.PI,2*Math.PI,sample),
         fnType: 'points',
         graphType: 'polyline'
-      }]
+      }],
+      plugins: [
+        functionPlot.plugins.zoomBox()
+      ]
     });
 
     //  Plot cos'
@@ -122,7 +140,10 @@
         points: evaluateFunction(derivate(cos),-2*Math.PI,2*Math.PI,sample),
         fnType: 'points',
         graphType: 'polyline'
-      }]
+      }],
+      plugins: [
+        functionPlot.plugins.zoomBox()
+      ]
     });
 
     //  Plot cos''
@@ -132,7 +153,10 @@
         points: evaluateFunction(derivate(cos,2),-2*Math.PI,2*Math.PI,sample),
         fnType: 'points',
         graphType: 'polyline'
-      }]
+      }],
+      plugins: [
+        functionPlot.plugins.zoomBox()
+      ]
     });
   }
 
@@ -162,6 +186,9 @@
         fnType: 'points',
         graphType: 'polyline'
       }
+    ],
+    plugins: [
+      functionPlot.plugins.zoomBox()
     ]
     });
   }
