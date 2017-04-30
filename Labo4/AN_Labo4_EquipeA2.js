@@ -62,6 +62,13 @@ function derivate(func,nOrder=1){
   }
 }
 
+
+
+function returnErrorDerivate(nOrder=1){
+  n=nOrder+1
+  return Math.pow(hMax*-1,n)/factorial(n)
+}
+
 /*
  *  SPECIAL FUNCTIONS.
  */
