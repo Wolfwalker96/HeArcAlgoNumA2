@@ -19,8 +19,8 @@ Method
 
 ### Cosine implementation
 
-As we have to implement our own cosine function, we decided to use the Maclaurin's Series (a
-Taylor's Series where a=0) because this enable us to remove the sine in the series (as sin(0)=0).
+As we have to implement our own cosine function, we decided to use the Maclaurin's Series
+(a Taylor's Series where a=0) because this enable us to remove the sine in the series (as sin(0)=0).
 
 ### Derivate implementation
 
