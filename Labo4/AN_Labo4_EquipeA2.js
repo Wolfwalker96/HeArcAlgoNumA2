@@ -62,7 +62,10 @@ function derivate(func,nOrder=1){
   }
 }
 
-
+//Not  good
+function returnCosError(){
+return cos(0)/factorial(41)
+}
 
 function returnErrorDerivate(nOrder=1){
   n=nOrder+1
