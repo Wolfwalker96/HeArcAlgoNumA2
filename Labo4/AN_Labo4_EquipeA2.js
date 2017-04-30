@@ -62,11 +62,22 @@ function derivate(func,nOrder=1){
   }
 }
 
-//Not  good
-function returnCosError(){
-return cos(0)/factorial(41)
+/*
+ *  returnCosError(x, order=20)
+ *    Returns the error of the cosine implementation using Taylor formule.
+ *    x: Value of the function.
+ *    order: MacLaurin order (same as cos order) (by default 20) .
+ */
+function returnCosError(x, order=20){
+  let z = x%(2*Math.PI)
+  return (Math.sin(z)/factorial(order+1))*Math.pow(z,order+1);
 }
 
+/*
+ *  returnErrorDerivate(nOrder=1)
+ *    Returns the error on the derivate function.
+ *    nOrder: Derivation order (by default 1).
+ */
 function returnErrorDerivate(nOrder=1){
   n=nOrder+1
   return Math.pow(hMax*-1,n)/factorial(n)
