@@ -1,7 +1,7 @@
 <!--
     Numerical Algorithm - 4nd Labo.
     (Team A2) Paul Jeanbourquin, Marc Friedli, Florian Fasmeyer.
-    01.04.2017
+    02.05.2017
 -->
 <html>
 <head>
@@ -39,7 +39,7 @@
   <div style="font-size:1.4em;">Equipe A2 - Paul Jeanbourquin, Marc Friedli, Florian Fasmeyer</div>
   <h2>Cosinus</h2>
   <p>
-    L'unité de la fonction cos sont des radians.
+    L'unité de la fonction cos est le radian.
   </p>
   <p>
     cos(kpi)
@@ -84,7 +84,7 @@
     $\textrm{Le but est de trouvé la fonction } T_{Total}(\alpha) \textrm{ qui pour un angle }\alpha \textrm{ nous donne le temps total.}$
   </p>
   <p>
-    $\textrm{Il nous faut donc trouvé une fonction } \color{blue}{D_{Bord}(\alpha)} \textrm{ et } \color{green}{D_{Millieu}(\alpha)} \textrm{ qui pour }\alpha\textrm{ retourne la distance parcourus.}$
+    $\textrm{Il nous faut donc trouvé une fonction } \color{blue}{D_{Bord}(\alpha)} \textrm{ et } \color{green}{D_{Millieu}(\alpha)} \textrm{ qui pour }\alpha\textrm{ retourne la distance parcourue.}$
   </p>
   <p>
     $\color{blue}{D_{Bord}(\alpha)} = 2\alpha r$
@@ -93,7 +93,7 @@
     $\color{green}{D_{Millieu}(\alpha)} = 2r\cos{\alpha}$
   </p>
   <p>
-    $T_{Total}(\alpha)=\frac{2\alpha r}{4}+\frac{2r\cos{\alpha}}{4}\textrm{ Infos: r peut être mis en évidence. Il joue le rôle d'un coéfficient d'agrandissement. Il peut donc être ignoré (r=1).}$
+    $T_{Total}(\alpha)=\frac{2\alpha r}{4}+\frac{2r\cos{\alpha}}{4}\textrm{ Infos: r peut être mis en évidence. Il joue le rôle d'un coefficient d'agrandissement. Il peut donc être ignoré (r=1).}$
   </p>
   <p>
     $\textrm{Ce qui donne : }T_{Total}(\alpha)=\frac{2\alpha}{4}+\frac{2\cos{\alpha}}{2}=\frac{1}{2}\alpha+\cos{\alpha}$
@@ -105,7 +105,7 @@
 
   </div>
   <p>
-    $\textrm{Recherche des extremums dans cette interval : }T'_{Total}(\alpha)=0 \Rightarrow \alpha=\frac{\pi}{6} \textrm{ est le seul extremum de la fonction dans l'interval.}$
+    $\textrm{Recherche des extremums dans cet interval : }T'_{Total}(\alpha)=0 \Rightarrow \alpha=\frac{\pi}{6} \textrm{ est le seul extremum.}$
   </p>
   <p>
     $\textrm{Mais, comme nous le voyons sur le graphe, il ne peut s'agir d'un minimum local. Sur le graphe, nous voyons que le minimum local sur l'interval 0 à }\frac{\pi}{2}\textrm{ est }\frac{\pi}{2}\textrm{.}$
@@ -114,7 +114,7 @@
     $\frac{\pi}{2}\textrm{ est donc la valeur de }\alpha\textrm{ pour laquelle }T_{Total}\textrm{ sera le plus petit.}$
   </p>
   <p>
-    $\textrm{En conclusion, il est plus rapide de ne passer que par le bord du cercle et ceux pour tous rayons possible.}$
+    $\textrm{En conclusion, il est plus rapide de ne passer que par le bord du cercle et ce, pour tous rayons possible.}$
   </p>
 </body>
 <script>
