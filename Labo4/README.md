@@ -52,4 +52,11 @@ Files
 Conclusion
 ----------
 
-We are a bunch of happy folks! :-)
+As result of our work, the cosine function is more accurate than the official JS implementation.
+That's because we use a more bigger order for the Taylor's Series by default.
+
+The derivate method works well for the first and second derivate, although it's not usable
+for the third and greater derivate.
+
+Finally, we solve the algebra problem of the boat. For more information about that show the html
+page.
