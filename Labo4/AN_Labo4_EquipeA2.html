@@ -118,6 +118,10 @@
   <p>
     $\textrm{En conclusion, il est plus rapide de ne passer que par le bord du cercle et ce, pour tous rayons possible.}$
   </p>
+  <hr />
+  <footer>
+    This document is certified 100% HTML5 valid by <a href="https://validator.w3.org">W3C Validator</a>.
+  </footer>
   <script>
     function PlotCosAndDerivate(){
       let sample = (sampleInput.value>=sampleInput.min && sampleInput.value<=sampleInput.max)?sampleInput.value:10;
@@ -165,7 +169,7 @@
       let k = cosInput.value;
       if(!isNaN(k)){
         let answer = cos(k*Math.PI);
-        cosAnswer.innerHTML = "cos("+k+"pi)="+answer.toFixed(20)+"";
+        cosAnswer.innerHTML = "cos("+k+"pi)="+answer.toFixed(7)+"";
       }
     }
 

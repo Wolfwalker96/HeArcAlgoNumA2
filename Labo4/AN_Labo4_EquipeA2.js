@@ -14,7 +14,7 @@
  *    n : values of factorial.
  */
 function factorial(n){
-  let ret=1;
+  let ret=1; // if n=0 or 1 returns 1.
   for(let i=2;i<=n;i++){
     ret*=i;
   }
@@ -28,7 +28,7 @@ function factorial(n){
  *    nOrder : Half of the order of Taylor's Series (20 by default).
  */
 function cos(x,nOrder=20){
-  let z = x % (2*Math.PI);
+  let z = x % (2*Math.PI); // Enables to use the function for each period number.
   let ret=0;
   for(let i=0;i<=nOrder;i++){
     ret+=(Math.pow(-1,i)*Math.pow(z,2*i))/factorial(2*i);
