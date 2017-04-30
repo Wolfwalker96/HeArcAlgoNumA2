@@ -45,7 +45,7 @@ the sample of the tree plots of Cosine and its derivate.
 ### Zooming in the plots
 
 You have two mode for zooming in the plots. Firstly, you can use your mouse wheel for zooming.
-Secondly, you can zoom in a particular area by maintaining pressed SHIFT touch and select the
+Secondly, you can zoom in a particular area by maintain pressed SHIFT touch and select the
 area using the mouse.
 
 Files
