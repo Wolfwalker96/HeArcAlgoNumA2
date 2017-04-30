@@ -33,9 +33,9 @@ User manual
 ### Calculate Cosine
 
 In the first section of the interface you can calculate cos(k * Pi) using k. You give a ratio
-of Pi, like k := 1/2. You can only change k wich gets multiplied with Pi. It's meant for 
-conveniance as it is easier to play with fractions of Pi than wit Pi itself. 
-Otherwise you would do something like : cos(1.57079) by head. :-)
+of Pi, like k := 1/2. You can only change k which gets multiplied with Pi. It's meant for
+convenience as it is easier to play with fractions of Pi than with Pi itself.
+Otherwise you would have to do something like : cos(1.57079) by head.
 
 ### Managing the sample
 
