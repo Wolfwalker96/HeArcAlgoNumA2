@@ -42,6 +42,12 @@ Otherwise you would have to do something like : cos(1.57079) by head.
 In the second section you can change the sample number used for the plots. This will only change
 the sample of the tree plots of Cosine and its derivate.
 
+### Zooming in the plots
+
+You have two mode for zooming in the plots. Firstly, you can use your mouse wheel for zooming.
+Secondly, you can zoom in a particular area by maintaining pressed SHIFT touch and select the
+area using the mouse.
+
 Files
 -----
 
