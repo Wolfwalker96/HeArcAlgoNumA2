@@ -3,7 +3,8 @@
     (Team A2) Paul Jeanbourquin, Marc Friedli, Florian Fasmeyer.
     01.05.2017
 -->
-<html>
+<!DOCTYPE html>
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <script src="js/d3.v3.min.js"></script>
@@ -117,93 +118,93 @@
   <p>
     $\textrm{En conclusion, il est plus rapide de ne passer que par le bord du cercle et ce, pour tous rayons possible.}$
   </p>
-</body>
-<script>
-  function PlotCosAndDerivate(){
-    let sample = (sampleInput.value>=sampleInput.min && sampleInput.value<=sampleInput.max)?sampleInput.value:10;
-    //  Plot cos
-    functionPlot({
-      target: '#cosPlot',
-      data: [{
-        points: evaluateFunction(cos,-2*Math.PI,2*Math.PI,sample),
-        fnType: 'points',
-        graphType: 'polyline'
-      }],
-      plugins: [
-        functionPlot.plugins.zoomBox()
-      ]
-    });
+  <script>
+    function PlotCosAndDerivate(){
+      let sample = (sampleInput.value>=sampleInput.min && sampleInput.value<=sampleInput.max)?sampleInput.value:10;
+      //  Plot cos
+      functionPlot({
+        target: '#cosPlot',
+        data: [{
+          points: evaluateFunction(cos,-2*Math.PI,2*Math.PI,sample),
+          fnType: 'points',
+          graphType: 'polyline'
+        }],
+        plugins: [
+          functionPlot.plugins.zoomBox()
+        ]
+      });
 
-    //  Plot cos'
-    functionPlot({
-      target: '#cosDPlot',
-      data: [{
-        points: evaluateFunction(derivate(cos),-2*Math.PI,2*Math.PI,sample),
-        fnType: 'points',
-        graphType: 'polyline'
-      }],
-      plugins: [
-        functionPlot.plugins.zoomBox()
-      ]
-    });
+      //  Plot cos'
+      functionPlot({
+        target: '#cosDPlot',
+        data: [{
+          points: evaluateFunction(derivate(cos),-2*Math.PI,2*Math.PI,sample),
+          fnType: 'points',
+          graphType: 'polyline'
+        }],
+        plugins: [
+          functionPlot.plugins.zoomBox()
+        ]
+      });
 
-    //  Plot cos''
-    functionPlot({
-      target: '#cosDDPlot',
-      data: [{
-        points: evaluateFunction(derivate(cos,2),-2*Math.PI,2*Math.PI,sample),
-        fnType: 'points',
-        graphType: 'polyline'
-      }],
-      plugins: [
-        functionPlot.plugins.zoomBox()
-      ]
-    });
-  }
-
-  function calculateCosK(){
-    let k = cosInput.value;
-    if(!isNaN(k)){
-      let answer = cos(k*Math.PI);
-      cosAnswer.innerHTML = "cos("+k+"pi)="+answer.toFixed(20)+"";
-    }
-  }
-
-  function boatCalculate(){
-    let Ttot = function(a){
-      return ((2*a)/4) + cos(a);
+      //  Plot cos''
+      functionPlot({
+        target: '#cosDDPlot',
+        data: [{
+          points: evaluateFunction(derivate(cos,2),-2*Math.PI,2*Math.PI,sample),
+          fnType: 'points',
+          graphType: 'polyline'
+        }],
+        plugins: [
+          functionPlot.plugins.zoomBox()
+        ]
+      });
     }
 
-    functionPlot({
-      target: '#boatTimePlot',
-      xAxis: {
-        domain: [0,Math.PI/2]
-      },
-      yAxis: {
-        domain: [0.75,1.2]
-      },
-      data: [{
-        points: evaluateFunction(Ttot,0*Math.PI,Math.PI/2,100),
-        fnType: 'points',
-        graphType: 'polyline'
+    function calculateCosK(){
+      let k = cosInput.value;
+      if(!isNaN(k)){
+        let answer = cos(k*Math.PI);
+        cosAnswer.innerHTML = "cos("+k+"pi)="+answer.toFixed(20)+"";
       }
-    ],
-    plugins: [
-      functionPlot.plugins.zoomBox()
-    ]
-    });
-  }
+    }
 
-  body.onload=function(e){
-    PlotCosAndDerivate();
-    calculateCosK();
-    boatCalculate();
-  };
-  sampleInput.onchange=function(e){
-    PlotCosAndDerivate();
-  }
-  cosInput.oninput=function(e){
-    calculateCosK();
-  }
-</script>
+    function boatCalculate(){
+      let Ttot = function(a){
+        return ((2*a)/4) + cos(a);
+      }
+
+      functionPlot({
+        target: '#boatTimePlot',
+        xAxis: {
+          domain: [0,Math.PI/2]
+        },
+        yAxis: {
+          domain: [0.75,1.2]
+        },
+        data: [{
+          points: evaluateFunction(Ttot,0*Math.PI,Math.PI/2,100),
+          fnType: 'points',
+          graphType: 'polyline'
+        }
+      ],
+      plugins: [
+        functionPlot.plugins.zoomBox()
+      ]
+      });
+    }
+
+    body.onload=function(e){
+      PlotCosAndDerivate();
+      calculateCosK();
+      boatCalculate();
+    };
+    sampleInput.onchange=function(e){
+      PlotCosAndDerivate();
+    }
+    cosInput.oninput=function(e){
+      calculateCosK();
+    }
+  </script>
+</body>
 </html>
