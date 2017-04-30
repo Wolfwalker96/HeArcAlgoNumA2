@@ -12,15 +12,15 @@ Objectives
 The objective is to make a JavaScript program which find derivate functions of cosine. We have to
 implement cosine with the Taylor's Series.
 
-An secondary objective is to solve an algebra problem.
+A secondary objective is to solve an algebra problem.
 
 Method
 ------
 
 ### Cosine implementation
 
-As we have to implement our own cosine function, we decide to use the Maclaurin's Series (an
-Taylor's Series where a=0) because this enable to remove the sine in the series (as sin(0)=0).
+As we have to implement our own cosine function, we decided to use the Maclaurin's Series (a
+Taylor's Series where a=0) because this enable us to remove the sine in the series (as sin(0)=0).
 
 ### Derivate implementation
 
@@ -32,12 +32,12 @@ User manual
 
 ### Calculate Cosine
 
-In the first section of the interface you can calculate cos(k pi) where you can specify the k
-arguments.
+In the first section of the interface you can calculate cos(k), with k an argument that will be
+multiplied with Pi (k * Pi). For user comfort.  
 
 ### Managing the sample
 
-In the second section you can change the sample number using for the plots. This will only change
+In the second section you can change the sample number used for the plots. This will only change
 the sample of the tree plots of Cosine and its derivate.
 
 Files
@@ -49,3 +49,5 @@ Files
 
 Conclusion
 ----------
+
+We are a bunch of happy folks! :-)
