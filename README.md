@@ -1,6 +1,6 @@
 # Numerical Algorithms lessons laboratory
 
-This git repository contains the pratical works made for the Numerical Algorithms lessons during our study in Computing Engineering specialized in Multimedia Software Developement.
+This GIT repository contains the practical works made for the Numerical Algorithms lessons during our study in Computing Engineering specialized in Multimedia Software Development.
 The code is made in JavaScript and is execute by a HTML files.
 
 ## The laboratories
@@ -16,3 +16,7 @@ Made a function which solve equations.
 ### Laboratory 3
 
 Made a script which solve linear systems with the Gauss's method.
+
+### Laboratory 4
+
+Made a script which implement and derive cosine.
