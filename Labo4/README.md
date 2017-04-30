@@ -3,64 +3,48 @@
 
 * Authors : (Team A2) Paul Jeanbourquin, Marc Friedli, Florian Fasmeyer
 * School : HE-Arc - Ingénierie (Neuchâtel, Switzerland)
-* [Readable README](https://github.com/Wolfwalker96/HeArcAlgoNumA2/blob/master/Labo3/README.md)
+* [Readable README](https://github.com/Wolfwalker96/HeArcAlgoNumA2/blob/master/Labo4/README.md)
 
 Objectives
 ----------
 
-The objective is to make a JavaScript programs which solves a linear system using the Gauss
-elimination algorithm to triangulate a matrix (upper triangular).
+The objective is to make a JavaScript program which find derivate functions of cosine. We have to
+implement cosine with the Taylor's Series.
 
-The matrix must be contained in a JSON file.
+An secondary objective is to solve an algebra problem.
 
 Method
 ------
 
-### File reading
+### Cosine implementation
 
-Because we are using JavaScript and HTML technologies, we can not access the file system
-directly.
-We decided to work with the new (HTML5) JS File API. This API give access to the files selected
-by the user.
+As we have to implement our own cosine function, we decide to use the Maclaurin's Series (an
+Taylor's Series where a=0) because this enable to remove the sine in the series (as sin(0)=0).
 
-### Gauss elimination
+### Derivate implementation
 
-To optimize the execution time we decided to put the B vector in the matrix A, which had a
-significant impact on the speed of the algorithm. We also made sure to properly factorize the
-equations in order to avoid any redundant divisions or multiplications.
-
-### Substitution method
-
-As the Gauss elimination returns an upside down matrix, we use an inverted substitution method
-(We start by the matrix's last line and finish by the first).
+We use the Richardson method to calculate the derivate. On our implementation we calculate the
+second derivate by reusing the derivate. (Recursive loop)
 
 User manual
 -------------
 
-To launch the linear system resolver, select a file. The resolution of the linear system
-starts automatically.
-After the resolution you can start with another file.
+### Calculate Cosine
 
-**For Firefox users** : if you already selected a file, you can restart the procedure by
-selecting the same file(useful if you want to test the processing time)
+In the first section of the interface you can calculate cos(k pi) where you can specify the k
+arguments.
+
+### Managing the sample
+
+In the second section you can change the sample number using for the plots. This will only change
+the sample of the tree plots of Cosine and its derivate.
 
 Files
 -----
 
-* **AN_Labo3_EquipeA2.html** Program view
-* **AN_Labo3_EquipeA2.js**  Script human readable
-* **AN_Labo3_EquipeA2.min.js** Script minified
-* **img/Loading_A2_Labo3.gif** Image for animation \
-(from http://www.downgraf.com/inspiration/25-beautiful-loading-bar-design-examples-gif-animated/)
+* **AN_Labo4_EquipeA2.html** Program view
+* **AN_Labo4_EquipeA2.js**  Script human readable
+* **js/** Some external libraries we use.
 
 Conclusion
 ----------
-
-This program successfully found the solution of a linear system. If there is no solution
-(matrix empty or false linear system) the program alerts the user.
-
-The program loads the matrix from a JSON file (deal with it).
-
-After testing we can affirm that this algorithm takes approximately 30ms to solve
-a 300x300 matrix on the computers we were using
-(an Lenovo T450s on Windows 8.1 with Firefox 48.0.2) .
