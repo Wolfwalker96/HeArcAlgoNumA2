@@ -1,71 +1,86 @@
-/*
+﻿/*
  *   Numerical Algorithm - 5th Labo.
  *   (Team A2) Paul Jeanbourquin, Marc Friedli, Florian Fasmeyer.
  *   02.05.2017
  */
 /*
+	READ ME
+	La librairie math.js rend le code illisible. Je vous laisse cette
+	copie au cas ou vous auriez l'urge de modifier du code. hf, gl.
+	Je comptes aussi faire des tests d'opti voir si je trouve pas
+	mieux que math.js, je vais avoir besoin de ce fichier.
+*/
+
+
+/*
 	Simpson method(function, start, stop, nbStep) where start and stop
 	are equal to 0 and 1 respectively. 	f:funciton 	n: nbStep
 	
 	WARNING: 'n' must be even!
-*/	
-function simpson(f, n){
-	let h = math.divide(math.bignumber(1), math.bignumber(n)); // Step size.
 	
-	let sum1=math.bignumber(0);
-	let sum2=math.bignumber(0);
-	let mult=math.bignumber(0);
+	n = 1072 is the best possible number of steps to calculate Pi with
+	an accuracy of 17 significant numbers.
+*/	
+
+function simpson(f, n){
+	let h = 1/n; // Step size.
+	let sum1=0;
+	let sum2=0;
+	let mult=0;
 
 	for(let i=1; i<n; i=i+2){
-		mult = math.multiply(h, i);
-		sum1 = math.add(sum1, f(mult));
-		sum2 = math.add(sum2, f(math.add(mult, -h)));
+		mult = h*i;
+		sum1 += f(mult);
+		sum2 += f(mult-h);
 	}
 	/*
-		Note: we must replace f(1) by the values
-		of f(b=1) wich is 1/2. Made for optimisation purposes.
+		usual:		(h/3) *	(f(a) + f(b) + 4*sum1 + 2*sum2)
+		
+		optimised: 	sum1 starts from f(a), so we get rid of useless
+					f(a) multiplied 4 times instead of 1. 
+					(h/3) *	(f(b)-3*f(a) + 4*sum1 + 2*sum2)
+					
+		Why?:		Because calculating sum1 and sum2 in the same 'for' loop
+					saves us 'n' multiplications. BUT, using a condition only
+					to avoid f(a) would create 'n' useless conditions wich are
+					more to compute than (f(b)-3f(a)) pre-calculated = -0.5
+		
 	*/
-	return ( math.multiply(math.divide(h,3),
-	( math.add(math.add(-0.5, math.multiply(4, sum1)), math.multiply(2, sum2)))));
+	return ( (h/3) * ( -0.5 + 4*sum1 + 2*sum2) );
 }
 
-/*
-	Replacer le return par la fonction(fait)
-*/
 function integral(x){
-	return math.divide(1,math.add(1, math.multiply(x, x)));
+	return 1/(1+x*x);
 }
 /*
-	Using "High Resolution Time API".
-	https://www.sitepoint.com/discovering-the-high-resolution-time-api/
-	*/
+	Display 17 significant numbers, with an uncertainty of ±2E-16.
+	https://fr.wikipedia.org/wiki/Chiffre_significatif#Cas_du_0
+	Uncertainty found to be ±2E-16, manually tested. 
+	Worst case scenario:
+	33E-16 => 31E-16 <= 29E-16. [±2E-16]
+*/
 function evaluateTime(){
-	math.config({
-		number: 'BigNumber',
-		precision: 20
-	});
-
-	let temp = math.bignumber(0);
-	let Pi = math.PI;
 	
-	let avgTime=0;
-	let n=10;
-	for(let me=0; me <n; me++){
-		//start timer
-		let timer = performance.now();
-		//run
-		temp = simpson(integral, 1E4);
-		//end timer
-		timer = performance.now()-timer;
-		avgTime += timer;
-	}
-	avgTime /= n;
-	console.log("Avg runtime over "+n+" occurences: "+avgTime.toFixed(4)+" ms");
+	let Pi = 3.1415926535897932;
+	let result=0;
+	
+	/*
+		we do not evaluate the assignment of variables, wich is why
+		it is done outside.
+	*/
+	result = simpson(integral, 1072);
+	
+	//evaluate time
+	let timer = performance.now();
+	simpson(integral, 1072);
+	timer = performance.now()-timer;
+	
+	//display in console
+	console.log("Run time: "+(timer*1000)+" us");
 	console.log();
+	console.log("Pi:      "+Pi.toFixed(16) + " ±2E-16");
+	console.log("Result:  "+(result*4).toFixed(16)+" ±2E-16");
+	console.log("Diff:    "+((result*4)-Pi).toFixed(16)+ " ±2E-16");
 	
-	console.log("Pi:      "+Pi.toString().substring(0,19));
-	console.log("Result:  "+math.multiply(temp, 4).toString().substring(0,19));
-	console.log("Diff:    "+math.add(math.multiply(temp, -4), Pi).toString().substring(0,19));
-
-	return math.multiply(temp, 4).toString().substring(0,19);
+	return result*4;
 }
