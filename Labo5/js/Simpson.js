@@ -21,14 +21,16 @@
 	n = 1072 is the best possible number of steps to calculate Pi with
 	an accuracy of 17 significant numbers.
 */	
-
-function simpson(f, n){
-	let h = 1/n; // Step size.
+//const
+var h = 1/1072;
+var hi = h/3;
+function simpson(f){
+	
 	let sum1=0;
 	let sum2=0;
 	let mult=0;
 
-	for(let i=1; i<n; i=i+2){
+	for(let i=1; i<1072; i=i+2){
 		mult = h*i;
 		sum1 += f(mult);
 		sum2 += f(mult-h);
@@ -44,9 +46,8 @@ function simpson(f, n){
 					saves us 'n' multiplications. BUT, using a condition only
 					to avoid f(a) would create 'n' useless conditions wich are
 					more to compute than (f(b)-3f(a)) pre-calculated = -0.5
-		
 	*/
-	return ( (h/3) * ( -0.5 + 4*sum1 + 2*sum2) );
+	return ( hi * ( -0.5 + 4*sum1 + 2*sum2) );
 }
 
 function integral(x){
@@ -64,18 +65,12 @@ function evaluateTime(){
 	let Pi = 3.1415926535897932;
 	let result=0;
 	
-	/*
-		we do not evaluate the assignment of variables, wich is why
-		it is done outside.
-	*/
 	result = simpson(integral, 1072);
 	
-	//evaluate time
 	let timer = performance.now();
 	simpson(integral, 1072);
 	timer = performance.now()-timer;
 	
-	//display in console
 	console.log("Run time: "+(timer*1000)+" us");
 	console.log();
 	console.log("Pi:      "+Pi.toFixed(16) + " ±2E-16");
