@@ -38,7 +38,7 @@ processing time.
 ### The graphical interpretation of Pi
 
 That's was almost the trickiest part of this lab. At the end we choice to take inspiration on the
-works of Nadieh Bremer who try to represent some Pi decimals by creating a path using the digit of
+works of [Nadieh Bremer](http://www.visualcinnamon.com) who try to represent some Pi decimals by creating a path using the digit of
 the decimal as angle.
 
 So we create a Java program to generating an image of the 65000 first decimals of Pi with a similar
