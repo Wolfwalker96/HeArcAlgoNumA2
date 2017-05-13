@@ -7,10 +7,6 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <script src="js/Simpson.js"></script>
-  <script src="js/math.js"></script>
-  <script src="js/d3.v3.min.js"></script>
-  <script src="js/function-plot.js"></script>
   <script src="AN_Labo5_EquipeA2.js" ></script>
   <title>AN_Labo5_EquipeA2</title>
   <style>
@@ -29,19 +25,78 @@
     table{
       border-collapse: collapse;
     }
+
+    #imgPi{
+      width:600px;
+    }
+    p{
+      width: 600px;
+      text-align: justify;
+    }
   </style>
 </head>
-<body id=body >
+<body id=body>
   <h1>Algorithme Numérique Labo 5</h1>
   <div style="font-size:1.4em;">Equipe A2 - Paul Jeanbourquin, Marc Friedli, Florian Fasmeyer</div>
   <hr />
+  <h2>Calcul de π</h2>
+  <table>
+    <tr>
+      <th>
+        Nom
+      </th>
+      <th>
+        Valeur
+      </th>
+    </tr>
+    <tr>
+      <td>
+        π de JavaScript
+      </td>
+      <td id=jsPi>
 
+      </td>
+    </tr>
+    <tr>
+      <td>
+        π caculé par notre programme
+      </td>
+      <td id=ownPi >
+
+      </td>
+    </tr>
+  </table>
+  <h3>Calcule du temps</h3>
+  <input type=button value="Mesurer le temps" id=btnTimePi />
+  <div id=timePi></div>
+  <h2>Interpretation graphique de π</h2>
+  <img src="img/pi.png" id="imgPi" alt="Représentation de Pi"/>
+  <h3>Explications</h3>
+  <p>
+    Cette image représente les 65000 premières décimales de π.
+    La forme est dessiné en faisant un trait avec un certain angle.
+    L'angle est définit de manière fixe pour chaque chiffre (0 à 9).
+    La couleur est faites par une variation des Hue (première décimal = 0, dernière décimal = 270).
+  </p>
+  <p>
+    L'idée de la conception de cette interpretation est inspirée par le travail de Nadieh Bremer.
+  </p>
+  <p>
+    Cette image a été genérée par un programme en Java de notre propre création.
+  </p>
   <hr />
   <footer>
     This document is certified 100% HTML5, certified by <a href="https://validator.w3.org">W3C Validator</a>.
   </footer>
   <script>
-
+    document.addEventListener("DOMContentLoaded",function(){
+      jsPi.innerHTML = Math.PI.toFixed(16);
+      ownPi.innerHTML = evaluateTime()['pi'].toFixed(16);
+    });
+    btnTimePi.addEventListener("click",function(){
+      let res = evaluateTime();
+      timePi.innerHTML=`π = ${res['pi'].toFixed(16)}, calculé en ${(res['duration']*1000).toFixed(0)} μs.`;
+    });
   </script>
 </body>
 </html>
