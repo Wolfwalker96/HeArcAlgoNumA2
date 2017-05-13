@@ -37,7 +37,7 @@ processing time.
 
 ### The graphical interpretation of Pi
 
-That's was almost the trickiest part of this lab. At the end we choice to take inspiration on the
+That's was almost the trickiest part of this lab. At the end we choice to take inspiration from the
 works of [Nadieh Bremer](http://www.visualcinnamon.com) who try to represent some Pi decimals by creating a path using the digit of
 the decimal as angle.
 
