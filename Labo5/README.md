@@ -65,3 +65,10 @@ Files
 
 Conclusion
 ----------
+
+Our programs works fines and complete all the objectives which must do. It calculates the sixteen
+first decimals of Pi in a very short time (40 microseconds in average on a Lenovo t450s). And we have
+out own graphical representation of Pi.
+
+The programs could be improve by using `bigNumber` for `math.js` this able to calculate more decimals
+but, as `bigNumber` use more bits, that's slower as the current method we use.
