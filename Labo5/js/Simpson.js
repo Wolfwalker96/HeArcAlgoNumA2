@@ -3,14 +3,6 @@
  *   (Team A2) Paul Jeanbourquin, Marc Friedli, Florian Fasmeyer.
  *   02.05.2017
  */
-/*
-	READ ME
-	La librairie math.js rend le code illisible. Je vous laisse cette
-	copie au cas ou vous auriez l'urge de modifier du code. hf, gl.
-	Je comptes aussi faire des tests d'opti voir si je trouve pas
-	mieux que math.js, je vais avoir besoin de ce fichier.
-*/
-
 
 /*
 	Simpson method(function, start, stop, nbStep) where start and stop
