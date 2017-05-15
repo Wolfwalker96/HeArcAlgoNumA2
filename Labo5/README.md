@@ -37,7 +37,7 @@ processing time.
 
 ### The graphical interpretation of Pi
 
-That's was almost the trickiest part of this lab. At the end we choosed to take inspiration from the
+That's was almost the trickiest part of this lab. At the end we choose to take inspiration from the
 works of [Nadieh Bremer](http://www.visualcinnamon.com) who try to represent some Pi decimals by creating a path using the digit of
 the decimal as angle.
 
@@ -70,5 +70,8 @@ Our programs works fine and complete all the objectives which we must do. It cal
 first decimals of Pi in a very short time (40 microseconds in average on a Lenovo t450s). And we have
 our own graphical representation of Pi.
 
-The programs could be improve by using `bigNumber` from `math.js` this would enable us to calculate more
-decimals but, as `bigNumber` use more bits, that's slower as the current method we use. It can go up to 150 ms.
+The inaccuracy on the last decimal if from the JavaScript's float implementation.
+
+The programs could be improve by using `bigNumber` from `math.js` this would enable us to calculate
+more decimals but, as `bigNumber` use more bits, that's slower as the current method we use. It can
+go up to 150 ms.
